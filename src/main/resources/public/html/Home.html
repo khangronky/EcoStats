@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoStats - Environmental Data Analysis</title>
+  <title>EcoStats - Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,27 +12,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/Home.css">
 </head>
-
 <body>
+  <div class="header flex justify-between items-center py-4 px-10">
+    <a href="Home.html" class="logo">
+      <img src="../images/logo.png" alt="EcoStats Logo" class="logo-img">
+    </a>
+    <nav class="flex space-x-4">
+      <a href="Mission.html" class="nav-link">Mission</a>
+      <a href="Data.html" class="nav-link">Data</a>
+      <a href="FAQ.html" class="nav-link">FAQ</a>
+    </nav>
+  </div>
   <div id="content">
-    <div class="header flex justify-between items-center py-4 px-10">
-      <a href="Home.html" class="logo">
-        <img src="../images/logo.png" alt="EcoStats Logo" class="logo-img">
-      </a>
-      <nav class="flex space-x-4">
-        <a href="Mission.html" class="nav-link">Mission</a>
-        <a href="OurTeam.html" class="nav-link">Our team</a>
-        <a href="Data.html" class="nav-link">Data</a>
-        <a href="FAQ.html" class="nav-link">FAQ</a>
-      </nav>
-    </div>
     <div class="main text-center mt-12">
       <h1 class="text-6xl font-bold mt-12 mb-4">Welcome to EcoStats!</h1>
       <p class="text-gray-600 mb-8 px-6 md:px-0">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur orci quis
-        leo lobortis, at pulvinar ipsum commodo. Proin vitae consectetur libero. Mauris vehicula
-        vulputate eleifend. Donec felis efficitur et lorem id, sagittis aliquam lorem. Quisque
-        maximus volutpat massa, nec gravida metus pretium eget.
+        We provide data of changes in ocean and land tempature over a 260-year period.<br>
+        You can explore and compare data from different geographic locations and time periods, and learn how temperature trends affect different regions and populations.<br>
+        Whether you are a student, a researcher, or just a curious individual, EcoStats can help you discover and understand the impact of climate change on our planet.<br>
+        <br>
+        To start exploring, click on the Go to Data button below.
       </p>
     </div>
     <hr class="horizontal-rule">
@@ -64,18 +62,15 @@
       <a href="Data.html" class="btn-primary">Go to Data</a>
     </div>
   </div>
-  <footer class="footer bg-gray-800 text-white text-center p-4 w-full">
+  <div class="footer bg-gray-800 text-white text-center p-4 w-full">
     <div class="footer-content">
       <a href="Mission.html" class="footer-link">Mission</a>
-      <a href="OurTeam.html" class="footer-link">Our team</a>
-      <span class="mx-3">|</span>
       <a href="Data.html" class="footer-link">Data</a>
       <a href="FAQ.html" class="footer-link">FAQ</a>
     </div>
     <div class="copyright mt-4">
       © 2024 EcoStats. All rights reserved.
     </div>
-  </footer>
+  </div>
 </body>
-
 </html>

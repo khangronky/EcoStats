@@ -9,6 +9,5 @@ public class Mission implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         context.render("public/html/Mission.html");
-        System.out.println("Mission page loaded");
     }
 }
