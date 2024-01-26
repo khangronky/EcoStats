@@ -4,14 +4,12 @@ import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 
 public class App {
-    public static final int         JAVALIN_PORT    = 7001;
-    public static final String      DIR         = "/public";
     public static void main(String[] args) {
         Javalin app = Javalin.create(config -> {
-            config.registerPlugin(new RouteOverviewPlugin("/help/routes"));
-            config.addStaticFiles(DIR);
-        }).start(JAVALIN_PORT);
-        
+            config.registerPlugin(new RouteOverviewPlugin("help/routes"));
+            config.addStaticFiles("public");
+        }).start(7001);
+        System.out.println("Listening on http://localhost:7001/html/Home.html");
         app.get(Home.URL, new Home());
         app.get(Mission.URL, new Mission());
         app.get(OurTeam.URL, new OurTeam());

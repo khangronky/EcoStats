@@ -9,8 +9,8 @@ SELECT t1.AvgTemp AvgTemp1,
        t1.LandOceanAvgTemp LandOceanAvgTemp1,
        t2.LandOceanAvgTemp LandOceanAvgTemp2,
        ROUND(100.0 * (t2.LandOceanAvgTemp - t1.LandOceanAvgTemp) / ABS(t1.LandOceanAvgTemp), 3) || "%" LandOceanAvgTempChange,
-       t1.Population Population1,
-       t2.Population Population2,
+       printf("%,d", t1.Population) Population1,
+       printf("%,d", t2.Population) Population2,
        ROUND(100.0 * (t2.Population - t1.Population) / ABS(t1.Population), 3) || "%" PopulationChange
 FROM (SELECT * FROM World WHERE Year = 1990) t1
 JOIN (SELECT * FROM World WHERE Year = 2005) t2;
@@ -20,8 +20,8 @@ SELECT t1.CountryName,
        t2.AvgTemp AvgTemp1,
        t3.AvgTemp AvgTemp2,
        ROUND(100.0 * (t3.AvgTemp - t2.AvgTemp) / ABS(t2.AvgTemp), 3) || "%" AvgTempChange,
-       t4.Population Population1,
-       t5.Population Population2,
+       printf("%,d", t4.Population) Population1,
+       printf("%,d", t5.Population) Population2,
        ROUND(100.0 * (t5.Population - t4.Population) / ABS(t4.Population), 3) || "%" PopulationChange
 FROM Country t1
 LEFT JOIN (SELECT * FROM CountryTemp WHERE Year = 2000) t2 ON t1.CountryID = t2.CountryID

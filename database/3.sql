@@ -121,8 +121,8 @@ LIMIT 10;
 
 -- Display countries (input: start year, time period, country name, number of most similar results)
 SELECT t1.CountryName,
-       t2.Population || " (" || t2.Year || ")" Population1,
-       t3.Population || " (" || t3.Year || ")" Population2,
+       printf("%,d", t2.Population) || " (" || t2.Year || ")" Population1,
+       printf("%,d", t3.Population) || " (" || t3.Year || ")" Population2,
        ROUND(SQRT(POWER(t2.Population - t5.Population, 2) + POWER(t3.Population - t6.Population, 2)), 3) SimScore
 FROM Country t1
 LEFT JOIN (SELECT * FROM CountryPopulation WHERE Year BETWEEN 1960 AND 2013 - 10) t2 ON t1.CountryID = t2.CountryID
