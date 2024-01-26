@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoStats - Environmental Data Analysis</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/Home.css">
+</head>
+
+<body>
+  <div id="content">
+    <div class="header flex justify-between items-center py-4 px-10">
+      <a href="Home.html" class="logo">
+        <img src="../images/logo.png" alt="EcoStats Logo" class="logo-img">
+      </a>
+      <nav class="flex space-x-4">
+        <a href="Mission.html" class="nav-link">Mission</a>
+        <a href="OurTeam.html" class="nav-link">Our team</a>
+        <a href="Data.html" class="nav-link">Data</a>
+        <a href="FAQ.html" class="nav-link">FAQ</a>
+      </nav>
+    </div>
+    <div class="main text-center mt-12">
+      <h1 class="text-6xl font-bold mt-12 mb-4">Welcome to EcoStats!</h1>
+      <p class="text-gray-600 mb-8 px-6 md:px-0">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur orci quis
+        leo lobortis, at pulvinar ipsum commodo. Proin vitae consectetur libero. Mauris vehicula
+        vulputate eleifend. Donec felis efficitur et lorem id, sagittis aliquam lorem. Quisque
+        maximus volutpat massa, nec gravida metus pretium eget.
+      </p>
+    </div>
+    <hr class="horizontal-rule">
+    <div class="data-section-title text-center mt-8">
+      <h2 class="text-3xl font-bold">Available Data</h2>
+    </div>
+    <div class="data-section grid grid-cols-1 md:grid-cols-2 gap-4 p-4 justify-items-center">
+      <div class="data-card-container">
+        <div class="data-card bg-white shadow-lg rounded-lg overflow-hidden">
+          <div class="card-content p-4">
+            <h3 class="text-xl font-semibold">Temperature</h3>
+            <p class="text-gray-600">We have found 266 annual average temperatures on our planet: from 8.7°C in 1750 to
+              9.8°C in 2015.</p>
+          </div>
+        </div>
+      </div>
+      <div class="data-card-container">
+        <div class="data-card bg-white shadow-lg rounded-lg overflow-hidden">
+          <div class="card-content p-4">
+            <h3 class="text-xl font-semibold">Population</h3>
+            <p class="text-gray-600">We have also collected data of global population within 54 years: from
+              3,031,564,839 people in 1960 to 7,229,184,551 people in 2013.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="go-to-data-button text-center mt-4">
+      <a href="Data.html" class="btn-primary">Go to Data</a>
+    </div>
+  </div>
+  <footer class="footer bg-gray-800 text-white text-center p-4 w-full">
+    <div class="footer-content">
+      <a href="Mission.html" class="footer-link">Mission</a>
+      <a href="OurTeam.html" class="footer-link">Our team</a>
+      <span class="mx-3">|</span>
+      <a href="Data.html" class="footer-link">Data</a>
+      <a href="FAQ.html" class="footer-link">FAQ</a>
+    </div>
+    <div class="copyright mt-4">
+      © 2024 EcoStats. All rights reserved.
+    </div>
+  </footer>
+</body>
+
+</html>

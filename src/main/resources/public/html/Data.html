@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoStats - Environmental Data Analysis</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/Data.css">
+</head>
+
+<body>
+  <div id="content">
+    <div class="header flex justify-between items-center py-4 px-10">
+      <a href="Home.html" class="logo">
+        <img src="../images/logo.png" alt="EcoStats Logo" class="logo-img">
+      </a>
+      <nav class="flex space-x-4">
+        <a href="Mission.html" class="nav-link">Mission</a>
+        <a href="OurTeam.html" class="nav-link">Our team</a>
+        <a href="Data.html" class="nav-link">Data</a>
+        <a href="FAQ.html" class="nav-link">FAQ</a>
+      </nav>
+    </div>
+    <div class="main-content">
+      <h1 class="data-title">Data</h1>
+      <p class="data-description">Want to have more knowledge statistically about climate change and population? You now can analyze different regional levels based on their temperature and population in three methods:</p>
+      <div class="modes-container">
+        <div class="mode basic-mode">
+          <a href="Change.html" class="mode-button"><span>Basic Mode</span></a>
+          <div class="analysis-method">
+            <h2>Temperature and population change</h2>
+            <p>Calculate the average temperature over a time period from starting years</p>
+          </div>
+        </div>
+        <div class="mode advance-mode">
+          <a href="AvgTemp.html" class="mode-button"><span>Advanced Mode</span></a>
+          <div class="analysis-method">
+            <h2>Average temperature</h2>
+            <p>Calculate the temperature and population change between two selected years</p>
+          </div>
+          <div class="analysis-method">
+            <h2>Similarity in temperature and population</h2>
+            <p>Display a region with starting year, time period, temperature and population then find other regions and periods with similar results</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer bg-gray-800 text-white text-center p-4 w-full">
+    <div class="footer-content">
+      <a href="Mission.html" class="footer-link">Mission</a>
+            <a href="OurTeam.html" class="footer-link">Our team</a>
+      <span class="mx-3">|</span>
+      <a href="Data.html" class="footer-link">Data</a>
+      <a href="FAQ.html" class="footer-link">FAQ</a>
+    </div>
+    <div class="copyright mt-4">
+      © 2024 EcoStats. All rights reserved.
+    </div>
+  </footer>
+</body>
+
+</html>
