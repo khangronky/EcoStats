@@ -53,6 +53,14 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
   }
+
+  .heading {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    font-weight:600;  
+    color:#102a43;
+    margin-bottom: 30px;
+}
   
   .faq-item {
     display: flex;

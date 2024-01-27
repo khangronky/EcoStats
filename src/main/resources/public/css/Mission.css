@@ -40,49 +40,167 @@ body {
     color: white;
 }
 
+.mission-img {
+    padding-top: 70px;
+}
+
+.heading {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.heading h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 38px;
+    font-weight:600;  
+    color:#102a43;
+    margin-bottom: 10px;
+}
+
+.heading h2::after{
+    content: "";
+    width: 100%;
+    height: 4px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50px;
+    background-color: #102a43;
+}
+
 .container {
-  max-width: 1280px;
-  padding: 10px;
-  margin: auto;
-  box-sizing: border-box;
+    width: 90%;
+    padding: 0 10px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    box-sizing: border-box;
 }
 
-.whoAreWE-img {
-  width: 100%;
+.goal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
-.ourTeamContainer {
-    max-width: 1280px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: auto;
-    margin-right: auto;
+.goal-content {
+    text-align: justify;
+    text-align: center;
 }
 
-.titleContainer {
-    margin-bottom: 12px;
+.persona {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap
 }
 
-.members-img {
+.persona-img {
+    flex: 1;
+    margin-right: 40px;
+}
+
+.persona-img img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.persona-content {
+    flex: 1;
+}
+
+.persona-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.persona-content ul {
+    list-style: circle;
+}
+
+.horizontal-line {
+    border: none;
+    height: 5px;
+    background-image: radial-gradient(#00ffbf,#d9f7e6, transparent)
+  }
+
+
+.members {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-bottom: 12px;
 }
 
-div.gallery {
-    margin: 20px;
-    width: 180px;
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
   
-div.gallery img {
-    width: 220px;
-    height: 200px;
-    border: #d9f7e6;
+.gallery img {
+    border-radius: 10px;
+    width: 200px;
+    height: auto;
 }
 
 .desc {
+    margin: 10px 0;
     text-align: center;
+}
+
+@media (max-width: 780px) {
+    .persona {
+        flex-direction: column;
+    }
+    
+    .persona-img {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .members {
+        padding: 0 40px;
+        flex-direction: column;
+    }
+
+    .gallery {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .gallery img {
+        width: 180px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    .desc {
+        margin: 10px;
+        text-align: right;
+    }
+}
+
+@media (max-width: 500px) {
+    .gallery {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .gallery img {
+        width: 180px;
+        height: auto;
+        margin-bottom: 0;
+    }
+
+    .desc {
+        margin: 10px 0;
+        text-align: center;
+    }
 }
 
 .footer {
