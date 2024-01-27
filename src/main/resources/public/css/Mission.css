@@ -1,15 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
-body,
-button,
-input,
-select,
-textarea {
+body, button, input, select, textarea {
     font-family: 'Roboto', sans-serif;
 }
 
-html,
-body {
+html, body {
     height: 100%;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -128,8 +123,7 @@ body {
     border: none;
     height: 5px;
     background-image: radial-gradient(#00ffbf,#d9f7e6, transparent)
-  }
-
+}
 
 .members {
     display: flex;
@@ -154,7 +148,7 @@ body {
     text-align: center;
 }
 
-@media  only screen and (max-width: 780px) {
+@media only screen and (max-width: 780px) {
     .persona {
         flex-direction: column;
     }
@@ -186,7 +180,7 @@ body {
     }
 }
 
-@media  only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px) {
     .gallery {
         flex-direction: column;
         justify-content: space-between;

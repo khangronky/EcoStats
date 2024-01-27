@@ -9,7 +9,7 @@ public class App {
             config.registerPlugin(new RouteOverviewPlugin("help/routes"));
             config.addStaticFiles("public");
         }).start(7001);
-        System.out.println("Listening on http://localhost:7001/html/Home.html");    
+        System.out.println("Please ignore the above link, our homepage is now located in: http://localhost:7001/html/Home.html");    
         app.get(AvgTemp.URL, new AvgTemp());
         app.get(Change.URL, new Change());
         app.get(Data.URL, new Data());
