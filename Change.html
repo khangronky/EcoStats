@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoStats - Temperature and population change</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Change.css">
+</head>
+
+<body>
+    <div class="header flex justify-between items-center py-4 px-10">
+        <a href="Home.html" class="logo">
+            <img src="../images/logo.png" alt="EcoStats Logo" class="logo-img">
+        </a>
+        <nav class="flex space-x-4">
+            <a href="Mission.html" class="nav-link">Mission</a>
+            <a href="Data.html" class="nav-link">Data</a>
+            <a href="FAQ.html" class="nav-link">FAQ</a>
+        </nav>
+    </div>
+
+
+    <div id="content">
+        <div class="container mx-auto mt-24 p-6 bg-white shadow-lg rounded-md">
+            <button onclick="window.location.href='Data.html';"
+                class="back-to-data-btn text-gray-800 font-semibold py-2 px-4 rounded inline-flex items-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span>Back to Data Page</span>
+            </button>
+
+            <div class="text-center my-6">
+                <h2 class="text-3xl font-bold text-gray-900">Temperature and population change</h2>
+                <p class="text-gray-600">Calculate the temperature and population change between two selected years</p>
+            </div>
+
+            <div class="mb-6">
+                <p class="text-gray-700 text-sm">Availability of data:</p>
+                <ul class="text-gray-600 text-xs list-disc list-inside">
+                    <li>Temperature (world, countries, cities, states): 1750 - 2013</li>
+                    <li>Land-Ocean temperature (world): 1850 - 2013</li>
+                    <li>Population (world, countries): 1960 - 2013</li>
+                    <li>"NULL" means that no data is available</li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label for="starting-year" class="block text-gray-700 text-sm mb-2">Starting years</label>
+                    <input type="number" id="starting-year" name="starting-year" value="1970"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <label for="ending-year" class="block text-gray-700 text-sm mb-2">Ending years</label>
+                    <input type="number" id="ending-year" name="ending-year" value="2000"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="view-by" class="block text-gray-700 text-sm mb-2">View by</label>
+                <select id="view-by" name="view-by"
+                    class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    onchange="updateFilters()">
+                    <option value="World">World</option>
+                    <option value="Countries">Countries</option>
+                    <option value="Cities">Cities</option>
+                    <option value="States">States</option>
+                </select>
+            </div>
+
+            <div id="additional-filter-countries" class="hidden">
+                <!-- Sort category dropdown -->
+                <div class="mb-4">
+                    <label for="sort-category" class="block text-gray-700 text-sm mb-2">Sort category</label>
+                    <select id="sort-category" name="sort-category"
+                        class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        <option>Country name</option>
+                        <option>Temperature</option>
+                        <option>Population</option>
+                    </select>
+                </div>
+
+                <!-- Sort order dropdown -->
+                <div class="mb-4">
+                    <label for="sort-order" class="block text-gray-700 text-sm mb-2">Sort order</label>
+                    <select id="sort-order" name="sort-order"
+                        class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        <option>Ascending</option>
+                        <option>Descending</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="additional-filter-cities" class="hidden">
+                <!-- Placeholder for cities-specific filters -->
+                <!-- ... -->
+                <div id="filter-country-name" class="mb-4">
+                    <label for="country-name" class="block text-gray-700 text-sm mb-2">Country name to view cities</label>
+                    <select id="country-name" name="country-name"
+                        class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="option1">Option 1</option>
+                        <!-- Additional options here -->
+                    </select>
+                </div>
+            </div>
+
+            <div id="additional-filter-states" class="hidden">
+                <label for="country-name-states" class="block text-gray-700 text-sm mb-2">Country name to view states</label>
+                <select id="country-name-states" name="country-name-states" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="option1">Option 1</option>
+                    <!-- Additional options can be dynamically loaded based on the selection -->
+                </select>
+            </div>
+
+            <div class="flex justify-center mt-6">
+                <button id="apply-button" class="btn-apply" type="button">
+                    Apply
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="footer bg-gray-800 text-white text-center p-4 w-full">
+        <div class="footer-content">
+            <a href="Mission.html" class="footer-link">Mission</a>
+            <a href="Data.html" class="footer-link">Data</a>
+            <a href="FAQ.html" class="footer-link">FAQ</a>
+        </div>
+        <div class="copyright mt-4">
+            © 2024 EcoStats. All rights reserved.
+        </div>
+    </div>
+
+
+    <script>
+        function toggleAdditionalFilters() {
+            var viewByValue = document.getElementById('view-by').value;
+            var additionalFilterCountries = document.getElementById('additional-filter-countries');
+            var additionalFilterCities = document.getElementById('additional-filter-cities');
+            var additionalFilterStates = document.getElementById('additional-filter-states'); // Define this variable
+        
+            // Hide all additional filters initially
+            additionalFilterCountries.style.display = 'none';
+            additionalFilterCities.style.display = 'none';
+            additionalFilterStates.style.display = 'none'; // Ensure this is also hidden
+        
+            // Show the appropriate additional filters based on the "View by" selection
+            if (viewByValue === 'Countries') {
+                additionalFilterCountries.style.display = 'block';
+            } else if (viewByValue === 'Cities') {
+                additionalFilterCities.style.display = 'block';
+            } else if (viewByValue === 'States') {
+                additionalFilterStates.style.display = 'block';
+            }
+        }
+        
+        // Event listener for when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the filters based on the current selection
+            toggleAdditionalFilters();
+        
+            // Ensure the "View by" dropdown has an event listener for changes
+            document.getElementById('view-by').addEventListener('change', toggleAdditionalFilters);
+        });
+    </script>    
+    
+</body>
+
+</html>
