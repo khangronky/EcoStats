@@ -11,14 +11,15 @@ public class Mission implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         context.render("public/html/Mission.html");
-        String database = "jdbc:sqlite:database/EcoStats.db";
 
-        String personaquery = "SELECT * FROM Persona";
-        ArrayList<ArrayList<String>> personatable = AppDB.getTable(database, personaquery);
-        AppDB.printTable(personatable);
+        String database = "jdbc:sqlite:database/EcoStats.db";
+        String query = "";
+        String json = "";
+
+        query = "SELECT * FROM Persona";
+        json = AppJSON.getJSON(database, query);
         
-        String studentquery = "SELECT * FROM Student";
-        ArrayList<ArrayList<String>> studenttable = AppDB.getTable(database, studentquery);
-        AppDB.printTable(studenttable);
+        query = "SELECT * FROM Student";
+        json = AppJSON.getJSON(database, query);
     }
 }

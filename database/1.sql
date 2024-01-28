@@ -1,23 +1,17 @@
-/*1. Welcome*/
+--- 1. Welcome
 
-/*1A. Landing Page*/
+--- 1A. Landing Page
 SELECT *
-FROM
-(SELECT MIN(Year), LandOceanAvgTemp FROM World WHERE LandOceanAvgTemp IS NOT NULL)
-JOIN
-(SELECT MAX(Year), LandOceanAvgTemp FROM World WHERE LandOceanAvgTemp IS NOT NULL)
-JOIN
-(SELECT COUNT(LandOceanAvgTemp) FROM World WHERE LandOceanAvgTemp IS NOT NULL);
+FROM (SELECT MIN(Year), LandOceanAvgTemp FROM World WHERE LandOceanAvgTemp IS NOT NULL)
+JOIN (SELECT MAX(Year), LandOceanAvgTemp FROM World WHERE LandOceanAvgTemp IS NOT NULL)
+JOIN (SELECT COUNT(LandOceanAvgTemp) FROM World WHERE LandOceanAvgTemp IS NOT NULL);
 
 SELECT *
-FROM
-(SELECT MIN(Year), printf("%,d", Population) FROM World WHERE Population IS NOT NULL)
-JOIN
-(SELECT MAX(Year), printf("%,d", Population) FROM World WHERE Population IS NOT NULL)
-JOIN
-(SELECT COUNT(Population) FROM World WHERE Population IS NOT NULL);
+FROM (SELECT MIN(Year), printf('%,d', Population) FROM World WHERE Population IS NOT NULL)
+JOIN (SELECT MAX(Year), printf('%,d', Population) FROM World WHERE Population IS NOT NULL)
+JOIN (SELECT COUNT(Population) FROM World WHERE Population IS NOT NULL);
 
-/*1B. Mission*/
+--- 1B. Mission
 
 -- Personas
 SELECT * FROM PersonaAttribute;
