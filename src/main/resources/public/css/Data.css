@@ -18,7 +18,6 @@ body {
 
 #content {
   flex: 1;
-  padding-bottom: 2rem;
 }
 
 .header {
@@ -48,7 +47,7 @@ body {
   color: white;
 }
 
-.main-content {
+.data-content {
   text-align: center;
   max-width: 1200px;
   margin: 3rem auto;
@@ -70,73 +69,107 @@ body {
   margin-bottom: 3rem;
 }
 
-.mode-button {
-  background-color: #9dbf9e;
-  color: white;
+.horizontal-line {
   border: none;
-  padding: 1rem 3rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  transition: background-color 0.3s;
-  position: relative;
-  overflow: hidden;
-  transition: color 0.3s, border-color 0.3s, background-color 0.3s;
-  display: inline-block; 
-  text-decoration: none;
+  height: 5px;
+  background-image: radial-gradient(#00ffbf,#d9f7e6, transparent)
 }
 
-.mode-button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300%;
-  height: 300%;
-  background-color: #88a08e;
-  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;
-  z-index: 0;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
+.modes-container h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color:#102a43;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.mode-button:hover::before {
-  width: 0;
-  height: 0;
-  top: 0;
-  left: 0;
+.modes-container {
+  max-width: 1280px;
+  margin: 40px auto;
+  padding: 0 10px;
 }
 
-.mode-button:hover {
-  color: #336d4a;
-  z-index: 1;
+.data-modes {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
-.mode-button span {
-  position: relative;
-  z-index: 2;
+.mode-title {
+  font-size: 24px;
+  font-weight: 700;
+  color:#102a43;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.analysis-method {
-  border: 1px solid #c0c0c0;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  background-color: #f0f4f8;
-  border-radius: 0.5rem;
+.mode-button h3{
+  margin: 10px ;
+}
+
+.mode-button {
+  padding: 10px;
+  margin: 10px;
+  max-width: 400px;
+  background-color: #eafbf1;
+  border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+}
+
+.mode-button:hover{
+  transform: (1.1);
+}
+
+.mode-button h2 {
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  margin: 0;
+  color:#334e68;
+}
+
+.mode-button h3{
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  color:#102a43;
+}
+
+.mode-button p{
+  font-size: 16px;
+  text-align: center;
+  color: #334e68;
+}
+
+@media (max-width: 1300px) {
+
+  .mode-button{
+    width: 300px;
+    height: auto;
+  }
+}
+
+@media (max-width: 1000px) {
+
+  .mode-button{
+    width: 220px;
+    height: auto;
+  }
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 780px) {
   .modes-container {
     flex-direction: column;
   }
 
-  .mode-button,
-  .analysis-method {
+  .mode-button{
     width: 100%;
-    padding: 1rem;
+    margin-bottom: 20px;
   }
 }
 
