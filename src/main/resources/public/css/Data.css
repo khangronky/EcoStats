@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
-body, button, input, select, textarea {
+body,
+button,
+input,
+select,
+textarea {
   font-family: 'Roboto', sans-serif;
 }
 
@@ -85,29 +89,25 @@ body {
 .mode-title {
   font-size: 24px;
   font-weight: 700;
-  color:#102a43;
+  color: #102a43;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.mode-button h3{
-  margin: 10px ;
+.mode-button h3 {
+  margin: 10px;
 }
 
 .mode-button {
-  padding: 10px;
-  margin: 10px;
   max-width: 400px;
-  background-color: #eafbf1;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
-.mode-button:hover{
-  transform: (1.1);
+.mode-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .mode-button h2 {
@@ -115,17 +115,17 @@ body {
   font-size: 20px;
   text-align: center;
   margin: 0;
-  color:#334e68;
+  color: #334e68;
 }
 
-.mode-button h3{
+.mode-button h3 {
   font-weight: 600;
   font-size: 18px;
   text-align: center;
-  color:#102a43;
+  color: #102a43;
 }
 
-.mode-button p{
+.mode-button p {
   font-size: 16px;
   text-align: center;
   color: #334e68;
@@ -133,7 +133,7 @@ body {
 
 @media (max-width: 1300px) {
 
-  .mode-button{
+  .mode-button {
     width: 300px;
     height: auto;
   }
@@ -141,7 +141,7 @@ body {
 
 @media (max-width: 1000px) {
 
-  .mode-button{
+  .mode-button {
     width: 220px;
     height: auto;
   }
@@ -153,7 +153,7 @@ body {
     flex-direction: column;
   }
 
-  .mode-button{
+  .mode-button {
     width: 100%;
     margin-bottom: 20px;
   }

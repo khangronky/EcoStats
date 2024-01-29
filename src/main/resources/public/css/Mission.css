@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
-body, button, input, select, textarea {
+body,
+button,
+input,
+select,
+textarea {
     font-family: 'Roboto', sans-serif;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -51,12 +56,12 @@ html, body {
 .heading h2 {
     font-family: 'Pacifico', cursive;
     font-size: 38px;
-    font-weight:600;  
-    color:#102a43;
+    font-weight: 600;
+    color: #102a43;
     margin-bottom: 10px;
 }
 
-.heading h2::after{
+.heading h2::after {
     content: "";
     width: 100%;
     height: 4px;
@@ -109,11 +114,11 @@ html, body {
     margin-right: 40px;
 }
 
-.persona-img img{
+.persona-img img {
     border-radius: 10px;
     max-width: 100%;
     height: auto;
-    display: block;  
+    display: block;
 }
 
 .persona-content {
@@ -133,7 +138,7 @@ html, body {
 .horizontal-line {
     border: none;
     height: 5px;
-    background-image: radial-gradient(#00ffbf,#d9f7e6, transparent)
+    background-image: radial-gradient(#00ffbf, #d9f7e6, transparent)
 }
 
 .members {
@@ -147,7 +152,7 @@ html, body {
     flex-wrap: wrap;
     flex-direction: column;
 }
-  
+
 .gallery img {
     border-radius: 10px;
     width: 200px;
@@ -168,12 +173,12 @@ html, body {
     .persona {
         flex-direction: column;
     }
-    
+
     .persona-img {
         margin-right: 0;
         margin-bottom: 20px;
     }
-    
+
     .members {
         padding: 0 40px;
         flex-direction: column;
@@ -190,6 +195,7 @@ html, body {
         height: auto;
         margin-bottom: 20px;
     }
+
     .desc {
         margin: 10px;
         text-align: right;
