@@ -105,9 +105,10 @@ body {
 }
 
 .persona-img img{
+    border-radius: 10px;
     max-width: 100%;
     height: auto;
-    display: block;
+    display: block;  
 }
 
 .persona-content {
