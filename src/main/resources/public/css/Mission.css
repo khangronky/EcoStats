@@ -75,9 +75,19 @@ body {
     box-sizing: border-box;
     max-width: 1280px;
     width: 100%;
-    padding: 0 20px;
+    padding: 0 40px;
     margin: 0 auto;
     margin-bottom: 30px;
+}
+
+.container p {
+    color: #515151;
+    font-weight: 600;
+}
+
+.container ul li {
+    color: #515151;
+    font-weight: 600;
 }
 
 .goal {
@@ -148,6 +158,11 @@ body {
     border-radius: 10px;
     width: 200px;
     height: auto;
+    transition: 0.2s;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
 }
 
 .desc {
