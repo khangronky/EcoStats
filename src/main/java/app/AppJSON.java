@@ -9,28 +9,31 @@ import java.sql.Statement;
 
 public class AppJSON {
     public static String getJSON (String database, String query) throws Exception {
-        String json = "[";
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(database);
             Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
             ResultSet resultSet = statement.executeQuery(query);
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
             boolean first = true;
+            String json = "[";
             while (resultSet.next()) {
                 if (first == true) first = false; else json += ",";
                 json += "{";
                 for (int i = 1; i <= columnCount; i++) {
                     json += "\"" + resultSetMetaData.getColumnName(i) + "\":";
-                    json += "\"" + resultSet.getString(i) + "\"";
-                    if (i < columnCount) {
-                        json += ",";
-                    }
+                    String columnType = resultSetMetaData.getColumnTypeName(i);
+                    if (columnType.equals("INTEGER")) json += resultSet.getInt(i);
+                    if (columnType.equals("REAL")) json += resultSet.getDouble(i);
+                    if (columnType.equals("TEXT")) json += "\"" + resultSet.getString(i) + "\"";
+                    if (i < columnCount) json += ",";
                 }
                 json += "}";   
             }
             json += "]";
+            return json;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         } finally {
@@ -40,6 +43,6 @@ public class AppJSON {
                 System.err.println(e.getMessage());
             }
         }
-        return json;
+        return "";
     }
 }
