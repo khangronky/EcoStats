@@ -87,7 +87,8 @@ body {
   .faq-image img {
     max-width: 80%;
     height: auto;
-    border: 10px solid #000; 
+    border-radius: 10px;
+    border: 5px solid #4dcbb0; 
     box-shadow: 15px 15px 30px rgba(20, 20, 20, 0.1);
   }
   
