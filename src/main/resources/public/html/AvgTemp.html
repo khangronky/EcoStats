@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/AvgTemp.css">
+    <link rel="stylesheet" href="../css/Change.css">
 </head>
 
 <body>
@@ -21,21 +21,207 @@
         </a>
         <nav class="flex space-x-4">
             <a href="Mission.html" class="nav-link">Mission</a>
-            <a href="Data.html" class="nav-link">Data</a>
+            <a href="Data.html" class="nav-link active">Data</a>
             <a href="FAQ.html" class="nav-link">FAQ</a>
         </nav>
     </div>
-    <div id="content">
 
-    </div>
-    <div class="footer bg-gray-800 text-white text-center p-4 w-full">
-        <div class="footer-content">
-            <a href="Mission.html" class="footer-link">About</a>
-            <a href="Data.html" class="footer-link">Data</a>
-            <a href="FAQ.html" class="footer-link">FAQ</a>
+    <div id="content" class="pt-24">
+        <div class="container mx-auto p-6 bg-white shadow-lg rounded-md">
+            <div class="flex justify-between items-center mb-6">
+                <button onclick="window.location.href='Data.html';"
+                    class="back-to-data-btn text-gray-800 font-semibold py-2 px-4 rounded inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6 mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span>Back to Data Page</span>
+                </button>
+                <h2 class="text-3xl font-bold text-gray-900 mx-auto">Average temperature</h2>
+                <button onclick="window.location.href='Similarity.html';"
+                    class="text-white bg-teal-500 hover:bg-teal-600 font-medium py-2 px-4 rounded">
+                    Change to: Similarity in temperature and population
+                </button>
+            </div>
+            <p class="text-center text-gray-600 mb-4">Calculate the average temperature and population over a time
+                period from starting years</p>
+
+            <div class="availability-data mb-6">
+                <h3 class="text-lg font-semibold text-gray-900">Availability of data:</h3>
+                <ul class="text-gray-600 text-sm list-disc pl-5">
+                    <li>Temperature (world, countries, cities, states): 1750 - 2013</li>
+                    <li>Land-Ocean temperature (world): 1850 - 2013</li>
+                    <li>Population (world, countries): 1960 - 2013</li>
+                    <li>"NULL" means that no data is available</li>
+                </ul>
+            </div>
+
+            <div class="filters my-6">
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label for="starting-year" class="block text-gray-700 text-sm mb-2">Starting years</label>
+                        <input type="text" id="starting-year" name="starting-year" placeholder="year1, year2, year3"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <p class="text-xs text-gray-500 mt-1">Maximum 5, separated by comma</p>
+                    </div>
+                    <div>
+                        <label for="time-period" class="block text-gray-700 text-sm mb-2">Time period (years)</label>
+                        <input type="number" id="time-period" name="time-period"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <p class="text-xs text-gray-500 mt-1">Please type the time period</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label for="view-by" class="block text-gray-700 text-sm mb-2">View by</label>
+                            <select id="view-by" name="view-by"
+                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                onchange="updateFilters()">
+                                <option value="World">World</option>
+                                <option value="Countries">Countries</option>
+                                <option value="Cities">Cities</option>
+                                <option value="States">States</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="additional-filters" class="hidden">
+                        <div class="mb-4">
+                            <label for="sort-category" class="block text-gray-700 text-sm mb-2">Sort category</label>
+                            <select id="sort-category" name="sort-category"
+                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                <option>Country name</option>
+                                <option>Year 1</option>
+                                <option>Year 2</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="sort-order" class="block text-gray-700 text-sm mb-2">Sort order</label>
+                            <select id="sort-order" name="sort-order"
+                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                <option>Ascending</option>
+                                <option>Descending</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="additional-filters-cities" class="hidden">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <label for="country-name" class="block text-gray-700 text-sm mb-2">Country name to view
+                                    cities</label>
+                                <select id="country-name" name="country-name"
+                                    class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                    <option>Option 1</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="city-sort-category" class="block text-gray-700 text-sm mb-2">Sort
+                                    category</label>
+                                <select id="city-sort-category" name="city-sort-category"
+                                    class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                    <option>City name</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="city-sort-order" class="block text-gray-700 text-sm mb-2">Sort order</label>
+                                <select id="city-sort-order" name="city-sort-order"
+                                    class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                    <option>Ascending</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="additional-filters-states" class="hidden">
+                        <div class="grid grid-cols-3 gap-4">
+
+                            <div>
+                                <label for="country-name" class="block text-gray-700 text-sm mb-2">Country name to view
+                                    states</label>
+                                <select id="country-name" name="country-name"
+                                    class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                    <option>Option 1</option>
+
+                                </select>
+                            </div>
+
+
+                            <div>
+                                <label for="state-sort-category" class="block text-gray-700 text-sm mb-2">Sort
+                                    category</label>
+                                <select id="state-sort-category" name="state-sort-category"
+                                    class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                    <option>State name</option>
+                                    <option>Year 1</option>
+                                    <option>Year 2</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="state-sort-order" class="block text-gray-700 text-sm mb-2">Sort
+                                    order</label>
+                                <select id="state-sort-order" name="state-sort-order"
+                                    class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                    <option>Ascending</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="flex justify-center mt-6">
+                    <button id="apply-filters" type="button"
+                        class="bg-gray-600 text-white px-12 py-3 rounded-lg font-bold text-lg leading-tight transition-colors duration-300 hover:bg-gray-900 focus:outline-none focus:ring focus:border-blue-300">
+                        Apply
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="copyright mt-4">© 2024 EcoStats. All rights reserved.</div>
-    </div>
+
+        <div class="footer bg-gray-800 text-white text-center p-4 w-full">
+            <div class="footer-content">
+                <a href="Mission.html" class="footer-link">About</a>
+                <a href="Data.html" class="footer-link">Data</a>
+                <a href="FAQ.html" class="footer-link">FAQ</a>
+            </div>
+            <div class="copyright mt-4">
+                © 2024 EcoStats. All rights reserved.
+            </div>
+        </div>
 </body>
+
+<script>
+    function updateFilters() {
+        var viewBySelection = document.getElementById('view-by').value;
+        var additionalFiltersCountries = document.getElementById('additional-filters');
+        var additionalFiltersCities = document.getElementById('additional-filters-cities');
+        var additionalFiltersStates = document.getElementById('additional-filters-states');
+
+        additionalFiltersCountries.style.display = 'none';
+        additionalFiltersCities.style.display = 'none';
+        additionalFiltersStates.style.display = 'none';
+
+        if (viewBySelection === 'Countries') {
+            additionalFiltersCountries.style.display = 'block';
+        } else if (viewBySelection === 'Cities') {
+            additionalFiltersCities.style.display = 'block';
+        } else if (viewBySelection === 'States') {
+            additionalFiltersStates.style.display = 'block';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        updateFilters();
+
+        document.getElementById('view-by').addEventListener('change', updateFilters);
+    });
+
+
+</script>
 
 </html>
