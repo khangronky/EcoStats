@@ -14,7 +14,11 @@ public class Mission implements Handler {
             String query = "";
             String json = "";
 
-            query = "SELECT * FROM Persona";
+            query = """
+            SELECT p.ImgLink, p.Name, pa.AttributeType, pa.Description 
+            FROM Persona p
+            JOIN PersonaAttribute pa ON p.Name = pa.Name;
+            """;
             json = AppJSON.getJSON(database, query);
             
             query = "SELECT * FROM Student";
