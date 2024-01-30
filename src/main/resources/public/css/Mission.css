@@ -120,6 +120,11 @@ body {
     max-width: 100%;
     height: auto;
     display: block;
+    transition: 0.2s;
+}
+
+.persona-img img:hover {
+    transform:scale(1.1);
 }
 
 .persona-content {
@@ -162,7 +167,7 @@ body {
 }
 
 .gallery img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .desc {
