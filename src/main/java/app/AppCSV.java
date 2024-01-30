@@ -7,8 +7,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class AppJSON {
-    public static String getJSON (String database, String query) throws Exception {
+public class AppCSV {
+    public static String getCSV (String database, String query) throws Exception {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(database);
@@ -17,23 +17,18 @@ public class AppJSON {
             ResultSet resultSet = statement.executeQuery(query);
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columnCount = resultSetMetaData.getColumnCount();
-            boolean first = true;
-            String json = "[";
-            while (resultSet.next()) {
-                if (first == true) first = false; else json += ",";
-                json += "{";
-                for (int i = 1; i <= columnCount; i++) {
-                    json += "\"" + resultSetMetaData.getColumnName(i) + "\":";
-                    String columnType = resultSetMetaData.getColumnTypeName(i);
-                    if (columnType.equals("INTEGER")) json += resultSet.getInt(i);
-                    if (columnType.equals("REAL")) json += resultSet.getDouble(i);
-                    if (columnType.equals("TEXT")) json += "\"" + resultSet.getString(i) + "\"";
-                    if (i < columnCount) json += ",";
-                }
-                json += "}";   
+            String CSV = "";
+            for (int i = 1; i <= columnCount; i++) {
+                CSV += resultSetMetaData.getColumnName(i);
+                if (i < columnCount) CSV += ","; else CSV += "\n";
             }
-            json += "]";
-            return json;
+            while (resultSet.next()) {
+                for (int i = 1; i <= columnCount; i++) {
+                    CSV += resultSet.getString(i);
+                    if (i < columnCount) CSV += ","; else CSV += "\n";
+                } 
+            }
+            return CSV;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         } finally {

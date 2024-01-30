@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/Similarity.css">
+    <script src="../js/Similarity.js"></script>
 </head>
 
 <body>
@@ -59,19 +60,18 @@
             <div class="filters flex flex-wrap gap-4 mb-4">
                 <div class="col-span-1">
                     <label for="starting-year" class="block text-gray-700 text-sm mb-2">Starting year</label>
-                    <input type="text" id="starting-year" name="starting-year" placeholder="Please type starting year"
+                    <input type="text" id="starting-year" name="starting-year" placeholder="Starting year"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
                 <div class="col-span-1">
                     <label for="time-period" class="block text-gray-700 text-sm mb-2">Time period (years)</label>
-                    <input type="number" id="time-period" name="time-period" placeholder="Please type the time period"
+                    <input type="text" id="time-period" name="time-period" placeholder="Time period"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
                 <div class="col-span-1">
                     <label for="view-by" class="block text-gray-700 text-sm mb-2">View by</label>
                     <select id="view-by" name="view-by"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        onchange="updateFilters()">
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <option value="Countries">Countries</option>
                         <option value="Cities">Cities</option>
                         <option value="States">States</option>
@@ -80,9 +80,8 @@
                 <div id="dynamic-filter-container" class="flex-1 flex gap-4">
                 </div>
                 <div class="col-span-1">
-                    <label for="number-results" class="block text-gray-700 text-sm mb-2">Number of most similar
-                        results</label>
-                    <div id="number-results"
+                    <label for="number-results" class="block text-gray-700 text-sm mb-2">Number of most similar results</label>
+                    <input type="text" id="number-results" name="number-results"
                         class="data-display shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
                 </div>
@@ -95,7 +94,6 @@
 
         </div>
     </div>
-    </div>
 
     <div class="footer bg-gray-800 text-white text-center p-4 w-full">
         <div class="footer-content">
@@ -107,70 +105,6 @@
             © 2024 EcoStats. All rights reserved.
         </div>
     </div>
-
-    <script>
-        function updateFilters() {
-            var viewBySelection = document.getElementById('view-by').value;
-            var dynamicFilterContainer = document.getElementById('dynamic-filter-container');
-
-            if (viewBySelection === 'Cities') {
-                dynamicFilterContainer.innerHTML = `
-            <div class="flex-1">
-                <label for="country-name-to-view-cities" class="block text-gray-700 text-sm mb-2">Country name to view cities</label>
-                <select id="country-name-to-view-cities" name="country-name-to-view-cities" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <!-- Options for country names to view cities will be dynamically populated -->
-                </select>
-            </div>
-            <div class="flex-1">
-                <label for="city-name" class="block text-gray-700 text-sm mb-2">City name</label>
-                <select id="city-name" name="city-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <!-- Options for city names will be dynamically populated -->
-                </select>
-            </div>
-        `;
-            } else if (viewBySelection === 'States') {
-                dynamicFilterContainer.innerHTML = `
-             <div class="flex-1">
-             <label for="country-name-to-view-states" class="block text-gray-700 text-sm mb-2">Country name to view states</label>
-               <select id="country-name-to-view-states" name="country-name-to-view-states" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-               <!-- Options for country names will be dynamically populated -->
-              </select>
-             </div>
-            <div class="flex-1">
-             <label for="state-name" class="block text-gray-700 text-sm mb-2">State name</label>
-               <select id="state-name" name="state-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-               <!-- Options for state names will be dynamically populated -->
-               </select>
-                </div>
-`;
-
-            } else {
-                dynamicFilterContainer.innerHTML = `
-            <div class="flex-1">
-                <label for="country-name" class="block text-gray-700 text-sm mb-2">Country name</label>
-                <select id="country-name" name="country-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <!-- Options for country names will be dynamically populated -->
-                </select>
-            </div>
-            <div class="flex-1">
-                <label for="similarity-category" class="block text-gray-700 text-sm mb-2">Similarity category</label>
-                <select id="similarity-category" name="similarity-category" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="Temperature">Temperature</option>
-                    <option value="Population">Population</option>
-                    <option value="Both">Both</option>
-                </select>
-            </div>
-        `;
-            }
-        }
-
-        document.getElementById('view-by').addEventListener('change', updateFilters);
-        document.addEventListener('DOMContentLoaded', updateFilters);
-
-    </script>
-
-
-
 </body>
 
 </html>

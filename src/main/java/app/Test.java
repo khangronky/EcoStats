@@ -11,16 +11,12 @@ public class Test implements Handler{
         if (context.method().equals("GET")) context.render("public/html/Test.html");
         if (context.method().equals("POST")) {
             String requestBody = context.body();
-            System.out.println("Received JSON on the server: " + requestBody);
-            String json = """
-            [
-                1990,
-                2010,
-                "Hello",
-                "ABC"
-            ]
+            System.out.println(requestBody);
+            String response = """
+            abc,def,ghi
+            123,456,789  
             """;
-            context.result(json);
+            context.result(response);
         }
     }
 }

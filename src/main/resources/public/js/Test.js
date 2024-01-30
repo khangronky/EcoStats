@@ -1,18 +1,16 @@
-const dataToSend = [
-    1990,
-    2000,
-    "Hello",
-    "World"
-]
-dataToSend.push("New Element");
+const dataToSend = `
+abc, def, ghi
+jkl, mno, pqr
+`;
 
 fetch("http://localhost:7000/html/Test.html", {
     method: "POST",
-    body: JSON.stringify(dataToSend)
+    body: dataToSend
 })
-.then((response) => response.json())
+.then((response) => response.text())
 .then((data) => {
-    console.log(data);
+    const a = data.substring(0, 3);
+    console.log(a);
 })
 .catch((error) => {
     console.error("Error: " + error);

@@ -10,22 +10,22 @@ public class AvgTemp implements Handler{
     public void handle(Context context) throws Exception {
         if (context.method().equals("GET")) context.render("public/html/AvgTemp.html");   
         if (context.method().equals("POST")) {
-            //String jsonin = "[1920,1940,1960,0,0,20,\"Countries\",\"\",\"1920\",\"Ascending\"]";
-            String jsonin = context.body();
-            String[] jsoninarray = jsonin.replace("[", "").replace("]", "").replace("\"", "").split(",");
+            String input = "1920,1940,1960,0,0,20,Countries,,,Ascending";
+            //String input = context.body();
+            String[] inputs = input.split(",", -1);
             int[] startingyear = new int[5];
             for (int i = 0; i < 5; i++) {
-                startingyear[i] = Integer.valueOf(jsoninarray[i]);
+                startingyear[i] = Integer.valueOf(inputs[i]);
             }
-            int period = Integer.valueOf(jsoninarray[5]);
-            String viewby = jsoninarray[6];
-            String countryname = jsoninarray[7];
-            String sortcategory = jsoninarray[8];
-            String sortorder = jsoninarray[9];
+            int period = Integer.valueOf(inputs[5]);
+            String viewby = inputs[6];
+            String countryname = inputs[7];
+            String sortcategory = inputs[8];
+            String sortorder = inputs[9];
         
             String database = "jdbc:sqlite:database/EcoStats.db";
             String query = "";
-            String jsonout = "";
+            String output = "";
 
             if (startingyear[0] != 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
             period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
@@ -40,8 +40,8 @@ public class AvgTemp implements Handler{
                 period,
                 startingyear[0], startingyear[0] + period);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -65,8 +65,8 @@ public class AvgTemp implements Handler{
                 period,
                 startingyear[1], startingyear[1] + period);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -98,8 +98,8 @@ public class AvgTemp implements Handler{
                 period,
                 startingyear[2], startingyear[2] + period);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] == 0 &&
@@ -139,8 +139,8 @@ public class AvgTemp implements Handler{
                 period,
                 startingyear[3], startingyear[3] + period);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] != 0 &&
@@ -188,8 +188,8 @@ public class AvgTemp implements Handler{
                 period,
                 startingyear[4], startingyear[4] + period);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -218,8 +218,8 @@ public class AvgTemp implements Handler{
                 startingyear[0], startingyear[0] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -252,8 +252,8 @@ public class AvgTemp implements Handler{
                 startingyear[1], startingyear[1] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -292,8 +292,8 @@ public class AvgTemp implements Handler{
                 startingyear[2], startingyear[2] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] == 0 &&
@@ -338,8 +338,8 @@ public class AvgTemp implements Handler{
                 startingyear[3], startingyear[3] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] != 0 &&
@@ -390,16 +390,16 @@ public class AvgTemp implements Handler{
                 startingyear[4], startingyear[4] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] == 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
             period == 0 && viewby.equals("Cities") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID;";
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -428,8 +428,8 @@ public class AvgTemp implements Handler{
                 startingyear[0], startingyear[0] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -464,8 +464,8 @@ public class AvgTemp implements Handler{
                 startingyear[1], startingyear[1] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -506,8 +506,8 @@ public class AvgTemp implements Handler{
                 startingyear[2], startingyear[2] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] == 0 &&
@@ -554,8 +554,8 @@ public class AvgTemp implements Handler{
                 startingyear[3], startingyear[3] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] != 0 &&
@@ -608,16 +608,16 @@ public class AvgTemp implements Handler{
                 startingyear[4], startingyear[4] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] == 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
             period == 0 && viewby.equals("States") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID;";
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -646,8 +646,8 @@ public class AvgTemp implements Handler{
                 startingyear[0], startingyear[0] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -682,8 +682,8 @@ public class AvgTemp implements Handler{
                 startingyear[1], startingyear[1] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
@@ -724,8 +724,8 @@ public class AvgTemp implements Handler{
                 startingyear[2], startingyear[2] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] == 0 &&
@@ -772,8 +772,8 @@ public class AvgTemp implements Handler{
                 startingyear[3], startingyear[3] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
 
             if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] != 0 &&
@@ -826,8 +826,8 @@ public class AvgTemp implements Handler{
                 startingyear[4], startingyear[4] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
-                jsonout = AppJSON.getJSON(database, query);
-                context.result(jsonout);
+                output = AppCSV.getCSV(database, query);
+                context.result(output);
             }
         }
     }
