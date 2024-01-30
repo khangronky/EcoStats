@@ -107,13 +107,19 @@ html, body {
 .persona-img {
     flex: 1;
     margin-right: 40px;
+    overflow: hidden;
 }
 
 .persona-img img{
     border-radius: 10px;
     max-width: 100%;
     height: auto;
-    display: block;  
+    display: block; 
+    transition: 0.2s; 
+}
+
+.persona-img:hover img{
+    transform:scale(1.05);
 }
 
 .persona-content {
