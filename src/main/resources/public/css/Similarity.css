@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
-body, button, input, select, textarea {
+body,
+button,
+input,
+select,
+textarea {
     font-family: 'Roboto', sans-serif;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -60,7 +65,7 @@ body {
 }
 
 .back-to-data-btn:hover {
-    background-color: #E2E8F0; 
+    background-color: #E2E8F0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
 }
@@ -84,15 +89,15 @@ body {
 
 .filter-item select,
 .filter-item input {
-  padding: 0.5em; 
-  font-size: 0.875em; 
+    padding: 0.5em;
+    font-size: 0.875em;
 }
 
 
 @media (min-width: 768px) {
-  .filters {
-    grid-template-columns: repeat(6, minmax(0, 1fr)); 
-  }
+    .filters {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
 }
 
 

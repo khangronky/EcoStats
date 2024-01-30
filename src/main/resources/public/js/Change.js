@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateFilters();
     document.getElementById('view-by').addEventListener('change', updateFilters);
     document.getElementById('apply-filters').addEventListener('click', function () {
-        if(handleErrors() === true) alert('Filters applied successfully');
+        if (handleErrors() === true) alert('Filters applied successfully');
     });
 });
 
@@ -88,7 +88,7 @@ function handleErrors() {
     else endingYearCheck = true;
 
     if (startingYearCheck === true && endingYearCheck === true) {
-        if(startingYearElement.value > endingYearElement.value) {
+        if (startingYearElement.value > endingYearElement.value) {
             startingYearElement.style.borderColor = 'red';
             endingYearElement.style.borderColor = 'red';
             const errorMessage = document.createElement('p');

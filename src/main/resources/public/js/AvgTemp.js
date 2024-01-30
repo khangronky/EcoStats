@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateFilters();
     document.getElementById('view-by').addEventListener('change', updateFilters);
     document.getElementById('apply-filters').addEventListener('click', function () {
-        if(handleErrors() === true) alert('Filters applied successfully');
+        if (handleErrors() === true) alert('Filters applied successfully');
     });
 });
 
@@ -29,10 +29,10 @@ function handleErrors() {
     var timePeriodCheck = false;
     var error = true;
 
-    if(startingYearsElement.style.borderColor = 'red') startingYearsElement.style.borderColor = '';
+    if (startingYearsElement.style.borderColor = 'red') startingYearsElement.style.borderColor = '';
     if (startingYearsElement.nextSibling) startingYearsElement.nextSibling.remove();
 
-    if(timePeriodElement.style.borderColor = 'red') timePeriodElement.style.borderColor = '';
+    if (timePeriodElement.style.borderColor = 'red') timePeriodElement.style.borderColor = '';
     if (timePeriodElement.nextSibling) timePeriodElement.nextSibling.remove();
 
     const startingYears = startingYearsElement.value.split(',').map(year => year.trim());
