@@ -1,60 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
-body, button, input, select, textarea {
-    font-family: 'Roboto', sans-serif;
+body,
+button,
+input,
+select,
+textarea {
+  font-family: 'Roboto', sans-serif;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .header {
-    width: 100%;
-    position: fixed;
-    background-color: #d9f7e6;
-    font-weight: 500;
+  width: 100%;
+  position: fixed;
+  background-color: #d9f7e6;
+  font-weight: 500;
 }
 
 .logo-img {
-    max-height: 30px;
-    width: auto;
+  max-height: 30px;
+  width: auto;
 }
 
 .nav-link {
-    color: #459096;
-    padding: 0.5rem 1rem;
-    transition: background-color 0.7s, color 0.7s;
-    border-radius: 0.25rem;
-    display: inline-block;
+  color: #459096;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.7s, color 0.7s;
+  border-radius: 0.25rem;
+  display: inline-block;
 }
 
 .nav-link:hover {
-    background-color: #000000;
-    color: white;
+  background-color: #000000;
+  color: white;
 }
 
 .faq-section {
-    background-color: #fff;
-  }
-  
-  .container {
-    max-width: 1280px;
-  }
-  
-  .faq-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
+  background-color: #fff;
+}
 
-  .heading {
-    font-family: 'Pacifico', cursive;
-    font-size: 3rem;
-    font-weight:600;  
-    color:#102a43;
-    margin-bottom: 30px;
+.container {
+  max-width: 1280px;
+}
+
+.faq-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.heading {
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #102a43;
+  margin-bottom: 30px;
 }
   
   .faq-item {
@@ -82,8 +87,7 @@ html, body {
   .faq-image img {
     max-width: 80%;
     height: auto;
-    border-radius: 10px;
-    border: 6px solid #4dcbb0; 
+    border: 10px solid #000; 
     box-shadow: 15px 15px 30px rgba(20, 20, 20, 0.1);
   }
   
@@ -113,15 +117,15 @@ html, body {
   }   
 
 .footer {
-    color: #e5e7eb;
-    font-size: 0.875rem;
+  color: #e5e7eb;
+  font-size: 0.875rem;
 }
 
 .footer-link {
-    color: #e5e7eb;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: background-color 0.3s, color 0.3s;
+  color: #e5e7eb;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .footer-link:hover {
