@@ -26,75 +26,66 @@ FROM World WHERE Year BETWEEN 2000 AND 2010) t5;
 
 -- Display countries (input: start year, time period, sort order)
 SELECT CountryName 'Country name',
-c1 'Average temperature (1920-1930)', c2 'Average temperature (1930-1940)',
-c3 'Average temperature (1990-2000)', c4 'Average temperature (2000-2010)',
+c1 'Average temperature (1920-1930)',
+c2 'Average temperature (1930-1940)',
+c3 'Average temperature (1990-2000)',
+c4 'Average temperature (2000-2010)',
 c5 'Average temperature (2003-2013)'
 FROM Country t1
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c1
-FROM CountryTemp WHERE Year BETWEEN 1920 AND 1930 GROUP BY CountryID) t2
-ON t1.CountryID = t2.CountryID
+FROM CountryTemp WHERE Year BETWEEN 1920 AND 1930 GROUP BY CountryID) t2 ON t1.CountryID = t2.CountryID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c2
-FROM CountryTemp WHERE Year BETWEEN 1930 AND 1940 GROUP BY CountryID) t3
-ON t1.CountryID = t3.CountryID
+FROM CountryTemp WHERE Year BETWEEN 1930 AND 1940 GROUP BY CountryID) t3 ON t1.CountryID = t3.CountryID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c3
-FROM CountryTemp WHERE Year BETWEEN 1990 AND 2000 GROUP BY CountryID) t4
-ON t1.CountryID = t4.CountryID
+FROM CountryTemp WHERE Year BETWEEN 1990 AND 2000 GROUP BY CountryID) t4 ON t1.CountryID = t4.CountryID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c4
-FROM CountryTemp WHERE Year BETWEEN 2000 AND 2010 GROUP BY CountryID) t5
-ON t1.CountryID = t5.CountryID
+FROM CountryTemp WHERE Year BETWEEN 2000 AND 2010 GROUP BY CountryID) t5 ON t1.CountryID = t5.CountryID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c5
-FROM CountryTemp WHERE Year BETWEEN 2003 AND 2013 GROUP BY CountryID) t6
-ON t1.CountryID = t6.CountryID
+FROM CountryTemp WHERE Year BETWEEN 2003 AND 2013 GROUP BY CountryID) t6 ON t1.CountryID = t6.CountryID
 ORDER BY CountryName ASC;
 
 -- Display countries having cities
 SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID;
 -- Display cities (input: start year, time period, sort order, country name)
 SELECT CityName 'City name (Australia)',
-c1 'Average temperature (1920-1930)', c2 'Average temperature (1930-1940)',
-c3 'Average temperature (1990-2000)', c4 'Average temperature (2000-2010)',
+c1 'Average temperature (1920-1930)',
+c2 'Average temperature (1930-1940)',
+c3 'Average temperature (1990-2000)',
+c4 'Average temperature (2000-2010)',
 c5 'Average temperature (2003-2013)'
 FROM (SELECT * FROM Country JOIN City ON Country.CountryID = City.CountryID WHERE CountryName = 'Australia') t1
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c1
-FROM CityTemp WHERE Year BETWEEN 1920 AND 1930 GROUP BY CityID) t2
-ON t1.CityID = t2.CityID
+FROM CityTemp WHERE Year BETWEEN 1920 AND 1930 GROUP BY CityID) t2 ON t1.CityID = t2.CityID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c2
-FROM CityTemp WHERE Year BETWEEN 1930 AND 1940 GROUP BY CityID) t3
-ON t1.CityID = t3.CityID
+FROM CityTemp WHERE Year BETWEEN 1930 AND 1940 GROUP BY CityID) t3 ON t1.CityID = t3.CityID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c3
-FROM CityTemp WHERE Year BETWEEN 1990 AND 2000 GROUP BY CityID) t4
-ON t1.CityID = t4.CityID
+FROM CityTemp WHERE Year BETWEEN 1990 AND 2000 GROUP BY CityID) t4 ON t1.CityID = t4.CityID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c4
-FROM CityTemp WHERE Year BETWEEN 2000 AND 2010 GROUP BY CityID) t5
-ON t1.CityID = t5.CityID
+FROM CityTemp WHERE Year BETWEEN 2000 AND 2010 GROUP BY CityID) t5 ON t1.CityID = t5.CityID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c5
-FROM CityTemp WHERE Year BETWEEN 2003 AND 2013 GROUP BY CityID) t6
-ON t1.CityID = t6.CityID
+FROM CityTemp WHERE Year BETWEEN 2003 AND 2013 GROUP BY CityID) t6 ON t1.CityID = t6.CityID
 ORDER BY CityName ASC;
 
 -- Display countries having states
 SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID;
 -- Display states (input: start year, time period, sort order, country name)
 SELECT StateName 'State name (United States)',
-c1 'Average temperature (1920-1930)', c2 'Average temperature (1930-1940)',
-c3 'Average temperature (1990-2000)', c4 'Average temperature (2000-2010)',
+c1 'Average temperature (1920-1930)',
+c2 'Average temperature (1930-1940)',
+c3 'Average temperature (1990-2000)',
+c4 'Average temperature (2000-2010)',
 c5 'Average temperature (2003-2013)'
 FROM (SELECT * FROM Country JOIN State ON Country.CountryID = State.CountryID WHERE CountryName = 'United States') t1
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c1
-FROM StateTemp WHERE Year BETWEEN 1920 AND 1930 GROUP BY StateID) t2
-ON t1.StateID = t2.StateID
+FROM StateTemp WHERE Year BETWEEN 1920 AND 1930 GROUP BY StateID) t2 ON t1.StateID = t2.StateID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c2
-FROM StateTemp WHERE Year BETWEEN 1930 AND 1940 GROUP BY StateID) t3
-ON t1.StateID = t3.StateID
+FROM StateTemp WHERE Year BETWEEN 1930 AND 1940 GROUP BY StateID) t3 ON t1.StateID = t3.StateID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c3
-FROM StateTemp WHERE Year BETWEEN 1990 AND 2000 GROUP BY StateID) t4
-ON t1.StateID = t4.StateID
+FROM StateTemp WHERE Year BETWEEN 1990 AND 2000 GROUP BY StateID) t4 ON t1.StateID = t4.StateID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c4
-FROM StateTemp WHERE Year BETWEEN 2000 AND 2010 GROUP BY StateID) t5
-ON t1.StateID = t5.StateID
+FROM StateTemp WHERE Year BETWEEN 2000 AND 2010 GROUP BY StateID) t5 ON t1.StateID = t5.StateID
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c5
-FROM StateTemp WHERE Year BETWEEN 2003 AND 2013 GROUP BY StateID) t6
-ON t1.StateID = t6.StateID
+FROM StateTemp WHERE Year BETWEEN 2003 AND 2013 GROUP BY StateID) t6 ON t1.StateID = t6.StateID
 ORDER BY StateName ASC;
 
 ----- 3B. Similarity in temperature and population

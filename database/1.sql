@@ -14,7 +14,9 @@ JOIN (SELECT COUNT(Population) FROM World WHERE Population IS NOT NULL);
 --- 1B. Mission
 
 -- Personas
-SELECT * FROM PersonaAttribute;
+SELECT ImgLink, Name, AttributeType, Description 
+FROM Persona
+JOIN PersonaAttribute ON Persona.Name = PersonaAttribute.Name;
 
 -- Our team
 SELECT * FROM Student;

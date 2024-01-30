@@ -9,6 +9,8 @@ public class FAQ implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         if (context.method().equals("GET")) context.render("public/html/FAQ.html");
-        if (context.method().equals("POST")) {}
+        if (context.method().equals("POST")) {
+            
+        }
     }
 }

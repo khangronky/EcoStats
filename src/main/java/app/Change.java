@@ -10,16 +10,19 @@ public class Change implements Handler {
     public void handle(Context context) throws Exception {
         if (context.method().equals("GET")) context.render("public/html/Change.html");
         if (context.method().equals("POST")) {
-            int startingyear = 1990;
-            int endingyear = 2000;
-            String viewby = "Cities";
-            String countryname = "Vietnam";
-            String sortcategory = "";
-            String sortorder = "";
+            //String jsonin = "[1990,2000,\"Cities\",\"Vietnam\",\"\",\"\",\"\"]";
+            String jsonin = context.body();
+            String[] jsoninarray = jsonin.replace("[", "").replace("]", "").replace("\"", "").split(",");
+            int startingyear = Integer.valueOf(jsoninarray[0]);
+            int endingyear = Integer.valueOf(jsoninarray[1]);
+            String viewby = jsoninarray[2];
+            String countryname = jsoninarray[3];
+            String sortcategory = jsoninarray[4];
+            String sortorder = jsoninarray[5];
 
             String database = "jdbc:sqlite:database/EcoStats.db";
             String query = "";
-            String json = "";
+            String jsonout = "";
 
             if (startingyear != 0 && endingyear != 0 && viewby.equals("World") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
@@ -44,7 +47,8 @@ public class Change implements Handler {
                 startingyear,
                 endingyear);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
             
             if (startingyear != 0 && endingyear != 0 && viewby.equals("Countries") && countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
@@ -52,7 +56,6 @@ public class Change implements Handler {
                 if (sortcategory.equals("Population")) sortcategory = "ROUND(100.0 * (t3.Population - t2.Population) / ABS(t2.Population), 3)";
                 if (sortorder.equals("Ascending")) sortorder = "ASC";
                 if (sortorder.equals("Descending")) sortorder = "DESC";
-
                 query = String.format("""
                 SELECT t1.CountryName 'Country name',
                 t2.AvgTemp 'Average temperature (%d)',
@@ -78,13 +81,15 @@ public class Change implements Handler {
                 endingyear,
                 sortcategory, sortorder);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if (startingyear == 0 && endingyear == 0 && viewby.equals("Cities") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID;";
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if (startingyear != 0 && endingyear != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
@@ -115,13 +120,15 @@ public class Change implements Handler {
                 startingyear,
                 endingyear);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if (startingyear == 0 && endingyear == 0 && viewby.equals("States") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID;";
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             } 
 
             if (startingyear != 0 && endingyear != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
@@ -152,7 +159,8 @@ public class Change implements Handler {
                 startingyear,
                 endingyear);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
         }
     }

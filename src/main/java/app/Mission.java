@@ -10,15 +10,7 @@ public class Mission implements Handler {
     public void handle(Context context) throws Exception {
         if (context.method().equals("GET")) context.render("public/html/Mission.html");
         if (context.method().equals("POST")) {
-            String database = "jdbc:sqlite:database/EcoStats.db";
-            String query = "";
-            String json = "";
 
-            query = "SELECT * FROM Persona";
-            json = AppJSON.getJSON(database, query);
-            
-            query = "SELECT * FROM Student";
-            json = AppJSON.getJSON(database, query);
         }
     }
 }

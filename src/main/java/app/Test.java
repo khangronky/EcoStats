@@ -14,21 +14,10 @@ public class Test implements Handler{
             System.out.println("Received JSON on the server: " + requestBody);
             String json = """
             [
-                {
-                    "name": "John",
-                    "age": 31,
-                    "city": "New York"
-                },
-                {
-                    "name": "Mary",
-                    "age": 35,
-                    "city": "Utah"
-                },
-                {
-                    "name": "Emily",
-                    "age": 36,
-                    "city": "Miami"
-                }
+                1990,
+                2010,
+                "Hello",
+                "ABC"
             ]
             """;
             context.result(json);

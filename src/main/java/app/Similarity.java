@@ -10,24 +10,28 @@ public class Similarity implements Handler{
     public void handle(Context context) throws Exception {
         if (context.method().equals("GET")) context.render("public/html/Similarity.html");
         if (context.method().equals("POST")) {
-            int startingyear = 0;
-            int period = 0;
-            String viewby = "Cities";
-            String countryname = "Thailand";
-            String cityname = "";
-            String statename = "";
-            String simcategory = "Temperature";
-            int numresults = 0;
-            
+            //String jsonin = "[0,0,\"Cities\",\"Thailand\",\"\",\"\",\"Temperature\",0]";
+            String jsonin = context.body();
+            String[] jsoninarray = jsonin.replace("[", "").replace("]", "").replace("\"", "").split(",");
+            int startingyear = Integer.valueOf(jsoninarray[0]);
+            int period = Integer.valueOf(jsoninarray[1]);
+            String viewby = jsoninarray[2];
+            String countryname = jsoninarray[3];
+            String cityname = jsoninarray[4];
+            String statename = jsoninarray[5];
+            String simcategory = jsoninarray[6];
+            int numresults = Integer.valueOf(jsoninarray[7]);
+
             String database = "jdbc:sqlite:database/EcoStats.db";
             String query = "";
-            String json = "";
+            String jsonout = "";
 
             if (startingyear == 0 && period == 0 && viewby.equals("Countries") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Temperature") && numresults == 0) {
                 query = "SELECT CountryName FROM Country;";
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if (startingyear != 0 && period != 0 && viewby.equals("Countries") && !countryname.equals("") && cityname.equals("") && statename.equals("") &&
@@ -53,14 +57,16 @@ public class Similarity implements Handler{
                 startingyear + period,
                 numresults);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if (startingyear == 0 && period == 0 && viewby.equals("Countries") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Population") && numresults == 0) {
                 query = "SELECT CountryName FROM Country;";
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if(startingyear != 0 && period != 0 && viewby.equals("Countries") && !countryname.equals("") && cityname.equals("") && statename.equals("") &&
@@ -86,14 +92,16 @@ public class Similarity implements Handler{
                 startingyear + period,
                 numresults);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if (startingyear == 0 && period == 0 && viewby.equals("Countries") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Both") && numresults == 0) {
                 query = "SELECT CountryName FROM Country;";
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if(startingyear != 0 && period != 0 && viewby.equals("Countries") && !countryname.equals("") && cityname.equals("") && statename.equals("") &&
@@ -129,21 +137,24 @@ public class Similarity implements Handler{
                 startingyear + period,
                 numresults);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if(startingyear == 0 && period == 0 && viewby.equals("Cities") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Temperature") && numresults == 0) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID;";
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if(startingyear == 0 && period == 0 && viewby.equals("Cities") && !countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Temperature") && numresults == 0) {
                 query = String.format("SELECT CityName FROM Country JOIN City ON Country.CountryID = City.CountryID WHERE CountryName = '%s';", countryname);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if(startingyear != 0 && period != 0 && viewby.equals("Cities") && !countryname.equals("") && !cityname.equals("") && statename.equals("") &&
@@ -171,21 +182,24 @@ public class Similarity implements Handler{
                 startingyear + period,
                 numresults);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
             
             if(startingyear == 0 && period == 0 && viewby.equals("States") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Temperature") && numresults == 0) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID;";
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if(startingyear == 0 && period == 0 && viewby.equals("States") && !countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Temperature") && numresults == 0) {
                 query = String.format("SELECT StateName FROM Country JOIN State ON Country.CountryID = State.CountryID WHERE CountryName = '%s';", countryname);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
 
             if(startingyear != 0 && period != 0 && viewby.equals("States") && !countryname.equals("") && cityname.equals("") && !statename.equals("") &&
@@ -213,7 +227,8 @@ public class Similarity implements Handler{
                 startingyear + period,
                 numresults);
                 System.out.println(query);
-                json = AppJSON.getJSON(database, query);
+                jsonout = AppJSON.getJSON(database, query);
+                context.result(jsonout);
             }
         }
     }

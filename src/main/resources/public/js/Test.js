@@ -1,7 +1,10 @@
-const dataToSend = {
-    name: "John Doe",
-    age: 25,
-};
+const dataToSend = [
+    1990,
+    2000,
+    "Hello",
+    "World"
+]
+dataToSend.push("New Element");
 
 fetch("http://localhost:7000/html/Test.html", {
     method: "POST",
@@ -9,7 +12,7 @@ fetch("http://localhost:7000/html/Test.html", {
 })
 .then((response) => response.json())
 .then((data) => {
-    console.log(Object.keys(data[1])[1]);
+    console.log(data);
 })
 .catch((error) => {
     console.error("Error: " + error);
