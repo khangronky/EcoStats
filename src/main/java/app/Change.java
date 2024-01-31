@@ -10,7 +10,6 @@ public class Change implements Handler {
     public void handle(Context context) throws Exception {
         if (context.method().equals("GET")) context.render("public/html/Change.html");
         if (context.method().equals("POST")) {
-            //String input = "1990,2000,Cities,Vietnam,,";
             String input = context.body();
             String[] inputs = input.split(",", -1);
             int startingyear = Integer.valueOf(inputs[0]);

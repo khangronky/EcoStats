@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', function () {
     updateFilters();
     document.getElementById('view-by').addEventListener('change', updateFilters);
     document.getElementById('apply-filters').addEventListener('click', function () {
-        if (handleErrors() === true) alert('Filters applied successfully');
+        if (handleErrors() === true) {
+            changeSortList();
+            applyFilters();
+        }
     });
 });
 
