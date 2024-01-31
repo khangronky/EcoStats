@@ -10,8 +10,7 @@ public class Similarity implements Handler{
     public void handle(Context context) throws Exception {
         if (context.method().equals("GET")) context.render("public/html/Similarity.html");
         if (context.method().equals("POST")) {
-            String input = "0,0,Cities,Thailand,,,Temperature,0";
-            //String input = context.body();
+            String input = context.body();
             String[] inputs = input.split(",", -1);
             int startingyear = Integer.valueOf(inputs[0]);
             int period = Integer.valueOf(inputs[1]);
@@ -143,7 +142,7 @@ public class Similarity implements Handler{
 
             if(startingyear == 0 && period == 0 && viewby.equals("Cities") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Temperature") && numresults == 0) {
-                query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID;";
+                query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID ORDER BY CountryName;";
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
@@ -188,7 +187,7 @@ public class Similarity implements Handler{
             
             if(startingyear == 0 && period == 0 && viewby.equals("States") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Temperature") && numresults == 0) {
-                query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID;";
+                query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID ORDER BY CountryName;";
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
