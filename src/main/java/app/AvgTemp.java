@@ -11,7 +11,7 @@ public class AvgTemp implements Handler{
         if (context.method().equals("GET")) context.render("public/html/AvgTemp.html");   
         if (context.method().equals("POST")) {
             String input = context.body();
-            String[] inputs = input.split(",", -1);
+            String[] inputs = input.split(", ", -1);
             int[] startingyears = new int[5];
             for (int i = 0; i < 5; i++) {
                 startingyears[i] = Integer.valueOf(inputs[i]);
@@ -208,8 +208,6 @@ public class AvgTemp implements Handler{
                 FROM Country t1
                 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = %d + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c1
                 FROM CountryTemp WHERE Year BETWEEN %d AND %d GROUP BY CountryID) t2 ON t1.CountryID = t2.CountryID
-                LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = %d + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c2
-                FROM CountryTemp WHERE Year BETWEEN %d AND %d GROUP BY CountryID) t3 ON t1.CountryID = t3.CountryID
                 ORDER BY %s %s;
                 """,
                 startingyears[0], startingyears[0] + period,
@@ -402,7 +400,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("Cities") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 1; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {
@@ -432,7 +430,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("Cities") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 2; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {
@@ -468,7 +466,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("Cities") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 3; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {
@@ -510,7 +508,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("Cities") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 4; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {
@@ -558,7 +556,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] != 0 &&
-            period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("Cities") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 5; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {
@@ -619,8 +617,8 @@ public class AvgTemp implements Handler{
                 context.result(output);
             }
 
-            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            if (startingyears[0] != 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
+            period != 0 && viewby.equals("States") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 1; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {
@@ -650,7 +648,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("States") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 2; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {
@@ -686,7 +684,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("States") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 3; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {
@@ -728,7 +726,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("States") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 4; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {
@@ -776,7 +774,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] != 0 &&
-            period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("States") && !countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 5; i++) {
                     if (Integer.valueOf(sortcategory) == startingyears[i]) {

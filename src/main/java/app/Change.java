@@ -11,7 +11,7 @@ public class Change implements Handler {
         if (context.method().equals("GET")) context.render("public/html/Change.html");
         if (context.method().equals("POST")) {
             String input = context.body();
-            String[] inputs = input.split(",", -1);
+            String[] inputs = input.split(", ", -1);
             int startingyear = Integer.valueOf(inputs[0]);
             int endingyear = Integer.valueOf(inputs[1]);
             String viewby = inputs[2];
@@ -31,8 +31,8 @@ public class Change implements Handler {
                 t1.LandOceanAvgTemp 'Land-Ocean average temperature (%d)',
                 t2.LandOceanAvgTemp 'Land-Ocean average temperature (%d)',
                 ROUND(100.0 * (t2.LandOceanAvgTemp - t1.LandOceanAvgTemp) / ABS(t1.LandOceanAvgTemp), 3) || '%%' 'Land-Ocean average temperature change',
-                printf('%%,d', t1.Population) 'Population (%d)',
-                printf('%%,d', t2.Population) 'Population (%d)',
+                t1.Population 'Population (%d)',
+                t2.Population 'Population (%d)',
                 ROUND(100.0 * (t2.Population - t1.Population) / ABS(t1.Population), 3) || '%%' 'Population change'
                 FROM (SELECT * FROM World WHERE Year = %d) t1
                 JOIN (SELECT * FROM World WHERE Year = %d) t2;
@@ -61,8 +61,8 @@ public class Change implements Handler {
                 t2.AvgTemp 'Average temperature (%d)',
                 t3.AvgTemp 'Average temperature (%d)',
                 ROUND(100.0 * (t3.AvgTemp - t2.AvgTemp) / ABS(t2.AvgTemp), 3) || '%%' 'Average temperature change',
-                printf('%%,d', t4.Population) 'Population (%d)',
-                printf('%%,d', t5.Population) 'Population (%d)',
+                t4.Population 'Population (%d)',
+                t5.Population 'Population (%d)',
                 ROUND(100.0 * (t5.Population - t4.Population) / ABS(t4.Population), 3) || '%%' 'Population change'
                 FROM Country t1
                 LEFT JOIN (SELECT * FROM CountryTemp WHERE Year = %d) t2 ON t1.CountryID = t2.CountryID

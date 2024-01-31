@@ -11,7 +11,7 @@ public class Similarity implements Handler{
         if (context.method().equals("GET")) context.render("public/html/Similarity.html");
         if (context.method().equals("POST")) {
             String input = context.body();
-            String[] inputs = input.split(",", -1);
+            String[] inputs = input.split(", ", -1);
             int startingyear = Integer.valueOf(inputs[0]);
             int period = Integer.valueOf(inputs[1]);
             String viewby = inputs[2];
@@ -26,7 +26,7 @@ public class Similarity implements Handler{
             String output = "";
 
             if (startingyear == 0 && period == 0 && viewby.equals("Countries") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
-            simcategory.equals("Temperature") && numresults == 0) {
+            simcategory.equals("") && numresults == 0) {
                 query = "SELECT CountryName FROM Country;";
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
@@ -60,20 +60,12 @@ public class Similarity implements Handler{
                 context.result(output);
             }
 
-            if (startingyear == 0 && period == 0 && viewby.equals("Countries") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
-            simcategory.equals("Population") && numresults == 0) {
-                query = "SELECT CountryName FROM Country;";
-                System.out.println(query);
-                output = AppCSV.getCSV(database, query);
-                context.result(output);
-            }
-
             if(startingyear != 0 && period != 0 && viewby.equals("Countries") && !countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Population") && numresults != 0) {
                 query = String.format("""
                 SELECT t1.CountryName 'Country name',
-                printf('%%,d', t2.Population) || ' (' || t2.Year || ')' 'Population (Starting year)',
-                printf('%%,d', t3.Population) || ' (' || t3.Year || ')' 'Population (Ending year)'
+                t2.Population || ' (' || t2.Year || ')' 'Population (Starting year)',
+                t3.Population || ' (' || t3.Year || ')' 'Population (Ending year)'
                 FROM Country t1
                 LEFT JOIN (SELECT * FROM CountryPopulation WHERE Year BETWEEN %d AND %d) t2 ON t1.CountryID = t2.CountryID
                 LEFT JOIN (SELECT * FROM CountryPopulation WHERE Year BETWEEN %d AND %d) t3 ON t1.CountryID = t3.CountryID AND t3.Year = t2.Year + %d
@@ -95,22 +87,14 @@ public class Similarity implements Handler{
                 context.result(output);
             }
 
-            if (startingyear == 0 && period == 0 && viewby.equals("Countries") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
-            simcategory.equals("Both") && numresults == 0) {
-                query = "SELECT CountryName FROM Country;";
-                System.out.println(query);
-                output = AppCSV.getCSV(database, query);
-                context.result(output);
-            }
-
             if(startingyear != 0 && period != 0 && viewby.equals("Countries") && !countryname.equals("") && cityname.equals("") && statename.equals("") &&
             simcategory.equals("Both") && numresults != 0) {
                 query = String.format("""
                 SELECT t1.CountryName 'Country name',
                 t2.AvgTemp || ' (' || t2.Year || ')' 'Average temperature (Starting year)',
                 t3.AvgTemp || ' (' || t3.Year || ')' 'Average temperature (Ending year)',
-                printf('%%,d', t4.Population) || ' (' || t4.Year || ')' 'Population (Starting year)',
-                printf('%%,d', t5.Population) || ' (' || t5.Year || ')' 'Population (Ending year)'
+                t4.Population || ' (' || t4.Year || ')' 'Population (Starting year)',
+                t5.Population || ' (' || t5.Year || ')' 'Population (Ending year)'
                 FROM Country t1
                 LEFT JOIN (SELECT * FROM CountryTemp WHERE Year BETWEEN %d AND %d) t2 ON t1.CountryID = t2.CountryID
                 LEFT JOIN (SELECT * FROM CountryTemp WHERE Year BETWEEN %d AND %d) t3 ON t1.CountryID = t3.CountryID AND t3.Year = t2.Year + %d
@@ -141,7 +125,7 @@ public class Similarity implements Handler{
             }
 
             if(startingyear == 0 && period == 0 && viewby.equals("Cities") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
-            simcategory.equals("Temperature") && numresults == 0) {
+            simcategory.equals("") && numresults == 0) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID ORDER BY CountryName;";
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
@@ -149,7 +133,7 @@ public class Similarity implements Handler{
             }
 
             if(startingyear == 0 && period == 0 && viewby.equals("Cities") && !countryname.equals("") && cityname.equals("") && statename.equals("") &&
-            simcategory.equals("Temperature") && numresults == 0) {
+            simcategory.equals("") && numresults == 0) {
                 query = String.format("SELECT CityName FROM Country JOIN City ON Country.CountryID = City.CountryID WHERE CountryName = '%s';", countryname);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
@@ -157,7 +141,7 @@ public class Similarity implements Handler{
             }
 
             if(startingyear != 0 && period != 0 && viewby.equals("Cities") && !countryname.equals("") && !cityname.equals("") && statename.equals("") &&
-            simcategory.equals("Temperature") && numresults != 0) {
+            simcategory.equals("") && numresults != 0) {
                 query = String.format("""
                 SELECT t1.CityName 'City name (%s)',
                 t2.AvgTemp || ' (' || t2.Year || ')' 'Average temperature (Starting year)',
@@ -186,7 +170,7 @@ public class Similarity implements Handler{
             }
             
             if(startingyear == 0 && period == 0 && viewby.equals("States") && countryname.equals("") && cityname.equals("") && statename.equals("") &&
-            simcategory.equals("Temperature") && numresults == 0) {
+            simcategory.equals("") && numresults == 0) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID ORDER BY CountryName;";
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
@@ -194,7 +178,7 @@ public class Similarity implements Handler{
             }
 
             if(startingyear == 0 && period == 0 && viewby.equals("States") && !countryname.equals("") && cityname.equals("") && statename.equals("") &&
-            simcategory.equals("Temperature") && numresults == 0) {
+            simcategory.equals("") && numresults == 0) {
                 query = String.format("SELECT StateName FROM Country JOIN State ON Country.CountryID = State.CountryID WHERE CountryName = '%s';", countryname);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
@@ -202,7 +186,7 @@ public class Similarity implements Handler{
             }
 
             if(startingyear != 0 && period != 0 && viewby.equals("States") && !countryname.equals("") && cityname.equals("") && !statename.equals("") &&
-            simcategory.equals("Temperature") && numresults != 0) {
+            simcategory.equals("") && numresults != 0) {
                 query = String.format("""
                 SELECT t1.StateName 'State name (%s)',
                 t2.AvgTemp || ' (' || t2.Year || ')' 'Average temperature (Starting year)',

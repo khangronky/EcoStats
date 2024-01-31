@@ -20,12 +20,12 @@ public class AppCSV {
             String CSV = "";
             for (int i = 1; i <= columnCount; i++) {
                 CSV += resultSetMetaData.getColumnName(i);
-                if (i < columnCount) CSV += ","; else CSV += "\n";
+                if (i < columnCount) CSV += ", "; else CSV += "\n";
             }
             while (resultSet.next()) {
                 for (int i = 1; i <= columnCount; i++) {
                     CSV += resultSet.getString(i);
-                    if (i < columnCount) CSV += ","; else CSV += "\n";
+                    if (i < columnCount) CSV += ", "; else CSV += "\n";
                 } 
             }
             return CSV;

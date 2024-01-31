@@ -144,8 +144,8 @@ LIMIT 10;
 SELECT CountryName FROM Country;
 -- Display countries (input: start year, time period, country name, number of most similar results)
 SELECT t1.CountryName 'Country name',
-printf('%,d', t2.Population) || ' (' || t2.Year || ')' 'Population (Starting year)',
-printf('%,d', t3.Population) || ' (' || t3.Year || ')' 'Population (Ending year)'
+t2.Population || ' (' || t2.Year || ')' 'Population (Starting year)',
+t3.Population || ' (' || t3.Year || ')' 'Population (Ending year)'
 FROM Country t1
 LEFT JOIN (SELECT * FROM CountryPopulation WHERE Year BETWEEN 1960 AND 2003) t2 ON t1.CountryID = t2.CountryID
 LEFT JOIN (SELECT * FROM CountryPopulation WHERE Year BETWEEN 1970 AND 2013) t3 ON t1.CountryID = t3.CountryID AND t3.Year = t2.Year + 10
@@ -164,8 +164,8 @@ SELECT CountryName FROM Country;
 SELECT t1.CountryName 'Country name',
 t2.AvgTemp || ' (' || t2.Year || ')' 'Average temperature (Starting year)',
 t3.AvgTemp || ' (' || t3.Year || ')' 'Average temperature (Ending year)',
-printf('%,d', t4.Population) || ' (' || t4.Year || ')' 'Population (Starting year)',
-printf('%,d', t5.Population) || ' (' || t5.Year || ')' 'Population (Ending year)'
+t4.Population || ' (' || t4.Year || ')' 'Population (Starting year)',
+t5.Population || ' (' || t5.Year || ')' 'Population (Ending year)'
 FROM Country t1
 LEFT JOIN (SELECT * FROM CountryTemp WHERE Year BETWEEN 1750 AND 2003) t2 ON t1.CountryID = t2.CountryID
 LEFT JOIN (SELECT * FROM CountryTemp WHERE Year BETWEEN 1760 AND 2013) t3 ON t1.CountryID = t3.CountryID AND t3.Year = t2.Year + 10
