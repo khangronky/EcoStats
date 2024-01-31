@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     updateFilters();
     document.getElementById('view-by').addEventListener('change', updateFilters);
     document.getElementById('apply-filters').addEventListener('click', function () {
-        if (handleErrors() == true) alert('Filters applied successfully');
+        if (handleErrors() == true) {
+            applyFilters();
+        }
     });
 });
 
@@ -59,22 +61,26 @@ function updateFilters() {
 }
 
 function handleErrors() {
-    const startingYearElement = document.getElementById('starting-year');
-    const timePeriodElement = document.getElementById('time-period');
-
     var startingYearCheck = true;
     var timePeriodCheck = false;
     var error = true;
 
-    if (startingYearElement.style.borderColor = 'red') startingYearElement.style.borderColor = '';
+    var startingYearElement = document.getElementById('starting-year');
+    var timePeriodElement = document.getElementById('time-period');
+    var numberResultsElement = document.getElementById('number-results');
+
+    if (startingYearElement.style.borderColor === 'red') startingYearElement.style.borderColor = '';
     if (startingYearElement.nextSibling) startingYearElement.nextSibling.remove();
 
-    if (timePeriodElement.style.borderColor = 'red') timePeriodElement.style.borderColor = '';
+    if (timePeriodElement.style.borderColor === 'red') timePeriodElement.style.borderColor = '';
     if (timePeriodElement.nextSibling) timePeriodElement.nextSibling.remove();
+
+    if (numberResultsElement.style.borderColor === 'red') numberResultsElement.style.borderColor = '';
+    if (numberResultsElement.nextSibling) numberResultsElement.nextSibling.remove();
 
     if (startingYearElement.value === '') {
         startingYearElement.style.borderColor = 'red';
-        const errorMessage = document.createElement('p');
+        var errorMessage = document.createElement('p');
         errorMessage.innerHTML = 'Please enter the starting year';
         errorMessage.style.color = 'red';
         startingYearElement.after(errorMessage);
@@ -82,7 +88,7 @@ function handleErrors() {
     }
     else if (!Number.isInteger(Number(startingYearElement.value))) {
         startingYearElement.style.borderColor = 'red';
-        const errorMessage = document.createElement('p');
+        var errorMessage = document.createElement('p');
         errorMessage.innerHTML = 'Invalid starting year';
         errorMessage.style.color = 'red';
         startingYearElement.after(errorMessage);
@@ -90,7 +96,7 @@ function handleErrors() {
     }
     else if (startingYearElement.value < 1750 || startingYearElement.value > 2013) {
         startingYearElement.style.borderColor = 'red';
-        const errorMessage = document.createElement('p');
+        var errorMessage = document.createElement('p');
         errorMessage.innerHTML = 'Starting year must be from 1750 to 2013';
         errorMessage.style.color = 'red';
         startingYearElement.after(errorMessage);
@@ -100,7 +106,7 @@ function handleErrors() {
 
     if (timePeriodElement.value === '') {
         timePeriodElement.style.borderColor = 'red';
-        const errorMessage = document.createElement('p');
+        var errorMessage = document.createElement('p');
         errorMessage.innerHTML = 'Please enter the time period';
         errorMessage.style.color = 'red';
         timePeriodElement.after(errorMessage);
@@ -108,7 +114,7 @@ function handleErrors() {
     }
     else if (!Number.isInteger(Number(timePeriodElement.value))) {
         timePeriodElement.style.borderColor = 'red';
-        const errorMessage = document.createElement('p');
+        var errorMessage = document.createElement('p');
         errorMessage.innerHTML = 'Invalid time period';
         errorMessage.style.color = 'red';
         timePeriodElement.after(errorMessage);
@@ -116,7 +122,7 @@ function handleErrors() {
     }
     else if (timePeriodElement.value < 0) {
         timePeriodElement.style.borderColor = 'red';
-        const errorMessage = document.createElement('p');
+        var errorMessage = document.createElement('p');
         errorMessage.innerHTML = 'The time period can not be negative';
         errorMessage.style.color = 'red';
         timePeriodElement.after(errorMessage);
@@ -127,12 +133,41 @@ function handleErrors() {
     if (startingYearCheck == true && timePeriodCheck == true) {
         if (Number(startingYearElement.value) + Number(timePeriodElement.value) > 2013) {
             timePeriodElement.style.borderColor = 'red';
-            const errorMessage = document.createElement('p');
+            var errorMessage = document.createElement('p');
             errorMessage.innerHTML = 'The starting year plus the time period is greater than 2013';
             errorMessage.style.color = 'red';
             timePeriodElement.after(errorMessage);
             error = false;
         }
     }
+
+    if (numberResultsElement.value === '') {
+        numberResultsElement.style.borderColor = 'red';
+        var errorMessage = document.createElement('p');
+        errorMessage.innerHTML = 'Please enter the number of results';
+        errorMessage.style.color = 'red';
+        numberResultsElement.after(errorMessage);
+        error = false;
+    }
+    else if (!Number.isInteger(Number(numberResultsElement.value))) {
+        numberResultsElement.style.borderColor = 'red';
+        var errorMessage = document.createElement('p');
+        errorMessage.innerHTML = 'Invalid number of results';
+        errorMessage.style.color = 'red';
+        numberResultsElement.after(errorMessage);
+        error = false;
+    }
+    else if (numberResultsElement.value < 1) {
+        numberResultsElement.style.borderColor = 'red';
+        var errorMessage = document.createElement('p');
+        errorMessage.innerHTML = 'The number of results can not be less than 1';
+        errorMessage.style.color = 'red';
+        numberResultsElement.after(errorMessage);
+        error = false;
+    }
     return error;
+}
+
+function applyFilters() {
+    
 }

@@ -8,9 +8,9 @@ public class App {
         Javalin app = Javalin.create(config -> {
             config.registerPlugin(new RouteOverviewPlugin("help/routes"));
             config.addStaticFiles("public");
-        }).start(7000);
+        }).start(7001);
 
-        System.out.println("Our homepage is now located in: http://localhost:7000/html/Home.html"); 
+        System.out.println("Our homepage is now located in: http://localhost:7001/html/Home.html"); 
 
         app.get(AvgTemp.URL, new AvgTemp());
         app.post(AvgTemp.URL, new AvgTemp());

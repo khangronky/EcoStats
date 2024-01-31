@@ -26,10 +26,8 @@ FROM World WHERE Year BETWEEN 2000 AND 2010) t5;
 
 -- Display countries (input: start year, time period, sort order)
 SELECT CountryName 'Country name',
-c1 'Average temperature (1920-1930)',
-c2 'Average temperature (1930-1940)',
-c3 'Average temperature (1990-2000)',
-c4 'Average temperature (2000-2010)',
+c1 'Average temperature (1920-1930)', c2 'Average temperature (1930-1940)',
+c3 'Average temperature (1990-2000)', c4 'Average temperature (2000-2010)',
 c5 'Average temperature (2003-2013)'
 FROM Country t1
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c1
@@ -45,13 +43,11 @@ FROM CountryTemp WHERE Year BETWEEN 2003 AND 2013 GROUP BY CountryID) t6 ON t1.C
 ORDER BY CountryName ASC;
 
 -- Display countries having cities
-SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID;
+SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID ORDER BY CountryName;
 -- Display cities (input: start year, time period, sort order, country name)
 SELECT CityName 'City name (Australia)',
-c1 'Average temperature (1920-1930)',
-c2 'Average temperature (1930-1940)',
-c3 'Average temperature (1990-2000)',
-c4 'Average temperature (2000-2010)',
+c1 'Average temperature (1920-1930)', c2 'Average temperature (1930-1940)',
+c3 'Average temperature (1990-2000)', c4 'Average temperature (2000-2010)',
 c5 'Average temperature (2003-2013)'
 FROM (SELECT * FROM Country JOIN City ON Country.CountryID = City.CountryID WHERE CountryName = 'Australia') t1
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c1
@@ -67,13 +63,11 @@ FROM CityTemp WHERE Year BETWEEN 2003 AND 2013 GROUP BY CityID) t6 ON t1.CityID 
 ORDER BY CityName ASC;
 
 -- Display countries having states
-SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID;
+SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID ORDER BY CountryName;
 -- Display states (input: start year, time period, sort order, country name)
 SELECT StateName 'State name (United States)',
-c1 'Average temperature (1920-1930)',
-c2 'Average temperature (1930-1940)',
-c3 'Average temperature (1990-2000)',
-c4 'Average temperature (2000-2010)',
+c1 'Average temperature (1920-1930)', c2 'Average temperature (1930-1940)',
+c3 'Average temperature (1990-2000)', c4 'Average temperature (2000-2010)',
 c5 'Average temperature (2003-2013)'
 FROM (SELECT * FROM Country JOIN State ON Country.CountryID = State.CountryID WHERE CountryName = 'United States') t1
 LEFT JOIN (SELECT *, CASE WHEN COUNT(AvgTemp) = 10 + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c1

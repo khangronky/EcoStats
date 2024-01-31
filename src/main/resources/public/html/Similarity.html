@@ -27,8 +27,8 @@
         </nav>
     </div>
 
-    <div id="content" class="pt-24">
-        <div class="container mx-auto p-6 bg-white shadow-lg rounded-md">
+    <div id="content">
+        <div class="container mx-auto pt-20 p-6 bg-white shadow-lg rounded-md">
             <div class="flex justify-between items-center mb-6">
                 <button onclick="window.location.href='Data.html';"
                     class="back-to-data-btn text-gray-800 font-semibold py-2 px-4 rounded inline-flex items-center">
@@ -38,15 +38,16 @@
                     </svg>
                     <span>Back to Data Page</span>
                 </button>
-                <h2 class="text-3xl font-bold text-gray-900 mx-auto">Similarity in Temperature and Population</h2>
                 <button onclick="window.location.href='AvgTemp.html';"
                     class="text-white bg-teal-500 hover:bg-teal-600 font-medium py-2 px-4 rounded">
                     Change to: Average Temperature
                 </button>
             </div>
-            <p class="text-center text-gray-600 mb-4">Display a region with its starting year, time period, temperature,
-                population then find other regions and periods with similar results</p>
-
+            <div class="text-center my-6">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Similarity in Temperature and Population</h2>
+                <p class="text-center text-gray-600">Display a region with its starting year, time period,
+                    temperature, population then find other regions and periods with similar results</p>
+            </div>
             <div class="availability-data mb-6">
                 <h3 class="text-lg font-semibold text-gray-900">Availability of data:</h3>
                 <ul class="text-gray-600 text-sm list-disc pl-5">
@@ -78,6 +79,7 @@
                     </select>
                 </div>
                 <div id="dynamic-filter-container" class="flex-1 flex gap-4">
+                    
                 </div>
                 <div class="col-span-1">
                     <label for="number-results" class="block text-gray-700 text-sm mb-2">Number of most similar
@@ -86,14 +88,12 @@
                         class="data-display shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
             </div>
+            <div class="flex justify-center mt-6">
+                <button id="apply-filters" type="button"
+                    class="bg-gray-500 text-white px-12 py-3 rounded-lg font-bold text-lg leading-tight transition-colors duration-300 hover:bg-gray-900 focus:outline-none focus:ring focus:border-blue-300">
+                    Apply
+            </div>
         </div>
-        <div class="flex justify-center mt-6">
-            <button id="apply-filters" type="button"
-                class="bg-gray-500 text-white px-12 py-3 rounded-lg font-bold text-lg leading-tight transition-colors duration-300 hover:bg-gray-900 focus:outline-none focus:ring focus:border-blue-300">
-                Apply
-        </div>
-
-    </div>
     </div>
 
     <div class="footer bg-gray-800 text-white text-center p-4 w-full">

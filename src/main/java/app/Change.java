@@ -10,8 +10,8 @@ public class Change implements Handler {
     public void handle(Context context) throws Exception {
         if (context.method().equals("GET")) context.render("public/html/Change.html");
         if (context.method().equals("POST")) {
-            String input = "1990,2000,Cities,Vietnam,,";
-            //String input = context.body();
+            //String input = "1990,2000,Cities,Vietnam,,";
+            String input = context.body();
             String[] inputs = input.split(",", -1);
             int startingyear = Integer.valueOf(inputs[0]);
             int endingyear = Integer.valueOf(inputs[1]);
@@ -52,6 +52,7 @@ public class Change implements Handler {
             }
             
             if (startingyear != 0 && endingyear != 0 && viewby.equals("Countries") && countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
+                if (sortcategory.equals("Country name")) sortcategory = "CountryName";
                 if (sortcategory.equals("Temperature")) sortcategory = "ROUND(100.0 * (t3.AvgTemp - t2.AvgTemp) / ABS(t2.AvgTemp), 3)";
                 if (sortcategory.equals("Population")) sortcategory = "ROUND(100.0 * (t3.Population - t2.Population) / ABS(t2.Population), 3)";
                 if (sortorder.equals("Ascending")) sortorder = "ASC";
@@ -86,7 +87,7 @@ public class Change implements Handler {
             }
 
             if (startingyear == 0 && endingyear == 0 && viewby.equals("Cities") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
-                query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID;";
+                query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID ORDER BY CountryName;";
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
@@ -125,7 +126,7 @@ public class Change implements Handler {
             }
 
             if (startingyear == 0 && endingyear == 0 && viewby.equals("States") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
-                query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID;";
+                query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID ORDER BY CountryName;";
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);

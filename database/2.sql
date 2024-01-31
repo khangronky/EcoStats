@@ -33,7 +33,7 @@ ORDER BY CountryName ASC;
 --- 2B
 
 -- Display countries having cities
-SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID;
+SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID ORDER BY CountryName;
 -- Display cities (input: start year, end year, country name)
 SELECT t1.CityName 'City name (Vietnam)',
 t2.AvgTemp 'Average temperature (1950)',
@@ -51,7 +51,7 @@ LEFT JOIN (SELECT * FROM CityTemp WHERE Year = 2010) t3 ON t1.CityID = t3.CityID
 ORDER BY CityName ASC;
 
 -- Display countries having states
-SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID;
+SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID ORDER BY CountryName;
 -- Display states (input: start year, end year, country name)
 SELECT t1.StateName 'State name (Brazil)',
 t2.AvgTemp 'Average temperature (1950)',
