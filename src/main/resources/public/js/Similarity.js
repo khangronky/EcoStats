@@ -31,8 +31,8 @@ function updateFilters() {
 
     if (viewBySelection === 'Cities') dynamicFilterContainer.innerHTML = `
     <div class="flex-1">
-        <label for="country-name-to-view-cities" class="block text-gray-700 text-sm mb-2">Country name to view cities</label>
-        <select id="country-name-to-view-cities" name="country-name-to-view-cities" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <label for="country-name-cities" class="block text-gray-700 text-sm mb-2">Country name to view cities</label>
+        <select id="country-name-cities" name="country-name-cities" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <option>Option 1</option>
         </select>
     </div>
@@ -46,8 +46,8 @@ function updateFilters() {
 
     if (viewBySelection === 'States') dynamicFilterContainer.innerHTML = `
     <div class="flex-1">
-        <label for="country-name-to-view-states" class="block text-gray-700 text-sm mb-2">Country name to view states</label>
-        <select id="country-name-to-view-states" name="country-name-to-view-states" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <label for="country-name-states" class="block text-gray-700 text-sm mb-2">Country name to view states</label>
+        <select id="country-name-states" name="country-name-states" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <option>Option 1</option>
         </select>
     </div>

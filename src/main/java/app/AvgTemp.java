@@ -13,9 +13,9 @@ public class AvgTemp implements Handler{
             //String input = "1920,1940,1960,0,0,20,Countries,,,Ascending";
             String input = context.body();
             String[] inputs = input.split(",", -1);
-            int[] startingyear = new int[5];
+            int[] startingyears = new int[5];
             for (int i = 0; i < 5; i++) {
-                startingyear[i] = Integer.valueOf(inputs[i]);
+                startingyears[i] = Integer.valueOf(inputs[i]);
             }
             int period = Integer.valueOf(inputs[5]);
             String viewby = inputs[6];
@@ -27,7 +27,7 @@ public class AvgTemp implements Handler{
             String query = "";
             String output = "";
 
-            if (startingyear[0] != 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)'
@@ -35,16 +35,16 @@ public class AvgTemp implements Handler{
                 CASE WHEN COUNT(LandOceanAvgTemp) = %d + 1 THEN ROUND(AVG(LandOceanAvgTemp), 3) ELSE NULL END c2
                 FROM World WHERE Year BETWEEN %d AND %d) t1
                 """,
-                startingyear[0], startingyear[0] + period, startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period, startingyears[0], startingyears[0] + period,
                 period,
                 period,
-                startingyear[0], startingyear[0] + period);
+                startingyears[0], startingyears[0] + period);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)',
@@ -56,20 +56,20 @@ public class AvgTemp implements Handler{
                 CASE WHEN COUNT(LandOceanAvgTemp) = %d + 1 THEN ROUND(AVG(LandOceanAvgTemp), 3) ELSE NULL END c4
                 FROM World WHERE Year BETWEEN %d AND %d) t2
                 """,
-                startingyear[0], startingyear[0] + period, startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period, startingyear[1], startingyear[1] + period,
+                startingyears[0], startingyears[0] + period, startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period, startingyears[1], startingyears[1] + period,
                 period,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
                 period,
-                startingyear[1], startingyear[1] + period);
+                startingyears[1], startingyears[1] + period);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)',
@@ -85,24 +85,24 @@ public class AvgTemp implements Handler{
                 CASE WHEN COUNT(LandOceanAvgTemp) = %d + 1 THEN ROUND(AVG(LandOceanAvgTemp), 3) ELSE NULL END c6
                 FROM World WHERE Year BETWEEN %d AND %d) t3
                 """,
-                startingyear[0], startingyear[0] + period, startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period, startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period, startingyear[2], startingyear[2] + period,
+                startingyears[0], startingyears[0] + period, startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period, startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period, startingyears[2], startingyears[2] + period,
                 period,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
                 period,
-                startingyear[2], startingyear[2] + period);
+                startingyears[2], startingyears[2] + period);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)',
@@ -122,28 +122,28 @@ public class AvgTemp implements Handler{
                 CASE WHEN COUNT(LandOceanAvgTemp) = %d + 1 THEN ROUND(AVG(LandOceanAvgTemp), 3) ELSE NULL END c8
                 FROM World WHERE Year BETWEEN %d AND %d) t4
                 """,
-                startingyear[0], startingyear[0] + period, startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period, startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period, startingyear[2], startingyear[2] + period,
-                startingyear[3], startingyear[3] + period, startingyear[3], startingyear[3] + period,
+                startingyears[0], startingyears[0] + period, startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period, startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period, startingyears[2], startingyears[2] + period,
+                startingyears[3], startingyears[3] + period, startingyears[3], startingyears[3] + period,
                 period,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 period,
                 period,
-                startingyear[3], startingyear[3] + period);
+                startingyears[3], startingyears[3] + period);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] != 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] != 0 &&
             period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)',
@@ -167,36 +167,36 @@ public class AvgTemp implements Handler{
                 CASE WHEN COUNT(LandOceanAvgTemp) = %d + 1 THEN ROUND(AVG(LandOceanAvgTemp), 3) ELSE NULL END c10
                 FROM World WHERE Year BETWEEN %d AND %d) t5;
                 """,
-                startingyear[0], startingyear[0] + period, startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period, startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period, startingyear[2], startingyear[2] + period,
-                startingyear[3], startingyear[3] + period, startingyear[3], startingyear[3] + period,
-                startingyear[4], startingyear[4] + period, startingyear[4], startingyear[4] + period,
+                startingyears[0], startingyears[0] + period, startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period, startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period, startingyears[2], startingyears[2] + period,
+                startingyears[3], startingyears[3] + period, startingyears[3], startingyears[3] + period,
+                startingyears[4], startingyears[4] + period, startingyears[4], startingyears[4] + period,
                 period,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 period,
                 period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[3], startingyears[3] + period,
                 period,
                 period,
-                startingyear[4], startingyear[4] + period);
+                startingyears[4], startingyears[4] + period);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("Countries") && countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {       
                 if (sortcategory.equals("Country name")) sortcategory = "CountryName";
                 else for (int i = 0; i < 1; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -213,20 +213,20 @@ public class AvgTemp implements Handler{
                 FROM CountryTemp WHERE Year BETWEEN %d AND %d GROUP BY CountryID) t3 ON t1.CountryID = t3.CountryID
                 ORDER BY %s %s;
                 """,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("Countries") && countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {       
                 if (sortcategory.equals("Country name")) sortcategory = "CountryName";
                 else for (int i = 0; i < 2; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -244,23 +244,23 @@ public class AvgTemp implements Handler{
                 FROM CountryTemp WHERE Year BETWEEN %d AND %d GROUP BY CountryID) t3 ON t1.CountryID = t3.CountryID
                 ORDER BY %s %s;
                 """,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("Countries") && countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {       
                 if (sortcategory.equals("Country name")) sortcategory = "CountryName";
                 else for (int i = 0; i < 3; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -281,26 +281,26 @@ public class AvgTemp implements Handler{
                 FROM CountryTemp WHERE Year BETWEEN %d AND %d GROUP BY CountryID) t4 ON t1.CountryID = t4.CountryID
                 ORDER BY %s %s;
                 """,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("Countries") && countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {       
                 if (sortcategory.equals("Country name")) sortcategory = "CountryName";
                 else for (int i = 0; i < 4; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -324,29 +324,29 @@ public class AvgTemp implements Handler{
                 FROM CountryTemp WHERE Year BETWEEN %d AND %d GROUP BY CountryID) t5 ON t1.CountryID = t5.CountryID
                 ORDER BY %s %s;
                 """,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period,
+                startingyears[3], startingyears[3] + period,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[3], startingyears[3] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] != 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] != 0 &&
             period != 0 && viewby.equals("Countries") && countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {       
                 if (sortcategory.equals("Country name")) sortcategory = "CountryName";
                 else for (int i = 0; i < 5; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -373,28 +373,28 @@ public class AvgTemp implements Handler{
                 FROM CountryTemp WHERE Year BETWEEN %d AND %d GROUP BY CountryID) t6 ON t1.CountryID = t6.CountryID
                 ORDER BY %s %s;
                 """,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period,
-                startingyear[3], startingyear[3] + period,
-                startingyear[4], startingyear[4] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period,
+                startingyears[3], startingyears[3] + period,
+                startingyears[4], startingyears[4] + period,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[3], startingyears[3] + period,
                 period,
-                startingyear[4], startingyear[4] + period,
+                startingyears[4], startingyears[4] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] == 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] == 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period == 0 && viewby.equals("Cities") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID ORDER BY CountryName;";
                 System.out.println(query);
@@ -402,11 +402,11 @@ public class AvgTemp implements Handler{
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 1; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -422,21 +422,21 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 2; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -455,24 +455,24 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 3; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -494,27 +494,27 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 4; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -539,30 +539,30 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period,
+                startingyears[3], startingyears[3] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[3], startingyears[3] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] != 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] != 0 &&
             period != 0 && viewby.equals("Cities") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("City name")) sortcategory = "CityName";
                 else for (int i = 0; i < 5; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -590,29 +590,29 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period,
-                startingyear[3], startingyear[3] + period,
-                startingyear[4], startingyear[4] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period,
+                startingyears[3], startingyears[3] + period,
+                startingyears[4], startingyears[4] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[3], startingyears[3] + period,
                 period,
-                startingyear[4], startingyear[4] + period,
+                startingyears[4], startingyears[4] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] == 0 && startingyear[1] == 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] == 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period == 0 && viewby.equals("States") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID ORDER BY CountryName;";
                 System.out.println(query);
@@ -620,11 +620,11 @@ public class AvgTemp implements Handler{
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 1; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -640,21 +640,21 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] == 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 2; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -673,24 +673,24 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] == 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 3; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -712,27 +712,27 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] == 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] == 0 &&
             period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 4; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -757,30 +757,30 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period,
+                startingyears[3], startingyears[3] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[3], startingyears[3] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
             }
 
-            if (startingyear[0] != 0 && startingyear[1] != 0 && startingyear[2] != 0 && startingyear[3] != 0 && startingyear[4] != 0 &&
+            if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] != 0 &&
             period != 0 && viewby.equals("States") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 if (sortcategory.equals("State name")) sortcategory = "StateName";
                 else for (int i = 0; i < 5; i++) {
-                    if (Integer.valueOf(sortcategory) == startingyear[i]) {
+                    if (Integer.valueOf(sortcategory) == startingyears[i]) {
                         sortcategory = String.format("c%d", i + 1);
                         break;
                     }
@@ -808,22 +808,22 @@ public class AvgTemp implements Handler{
                 ORDER BY %s %s;
                 """,
                 countryname,
-                startingyear[0], startingyear[0] + period,
-                startingyear[1], startingyear[1] + period,
-                startingyear[2], startingyear[2] + period,
-                startingyear[3], startingyear[3] + period,
-                startingyear[4], startingyear[4] + period,
+                startingyears[0], startingyears[0] + period,
+                startingyears[1], startingyears[1] + period,
+                startingyears[2], startingyears[2] + period,
+                startingyears[3], startingyears[3] + period,
+                startingyears[4], startingyears[4] + period,
                 countryname,
                 period,
-                startingyear[0], startingyear[0] + period,
+                startingyears[0], startingyears[0] + period,
                 period,
-                startingyear[1], startingyear[1] + period,
+                startingyears[1], startingyears[1] + period,
                 period,
-                startingyear[2], startingyear[2] + period,
+                startingyears[2], startingyears[2] + period,
                 period,
-                startingyear[3], startingyear[3] + period,
+                startingyears[3], startingyears[3] + period,
                 period,
-                startingyear[4], startingyear[4] + period,
+                startingyears[4], startingyears[4] + period,
                 sortcategory, sortorder);
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);

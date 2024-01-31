@@ -172,8 +172,8 @@ function applyFilters() {
     endingYear = document.getElementById('ending-year').value;
     viewByValue = document.getElementById('view-by').value;
     if (viewByValue === 'Countries') {
-        sortCategory = document.getElementById('sort-category').value;
-        sortOrder = document.getElementById('sort-order').value;
+        sortCategory = document.getElementById('country-sort-category').value;
+        sortOrder = document.getElementById('country-sort-order').value;
     }
     if (viewByValue === 'Cities') countryName = document.getElementById('country-name-cities').value;
     if (viewByValue === 'States') countryName = document.getElementById('country-name-states').value;
