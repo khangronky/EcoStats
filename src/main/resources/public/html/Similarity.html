@@ -96,6 +96,11 @@
     </div>
     </div>
 
+    <input type="file" id="csvFileInput" accept=".csv">
+    <table id="csvTable">
+        <!-- Table content will be generated here -->
+    </table>
+
     <div class="footer bg-gray-800 text-white text-center p-4 w-full">
         <div class="footer-content">
             <a href="Mission.html" class="footer-link">Mission</a>
@@ -107,5 +112,37 @@
         </div>
     </div>
 </body>
+
+
+<script>
+    // Sample API URL for CSV data
+    const apiUrl = 'https://example.com/api/csvdata';
+
+    // Fetch CSV data from the API
+    fetch(apiUrl)
+        .then(response => response.text())
+        .then(data => {
+            const rows = data.split('\n');
+            const table = document.getElementById('csvTable');
+            table.innerHTML = ''; // Clear existing table content
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = document.createElement('tr');
+                const cells = rows[i].split(',');
+
+                for (let j = 0; j < cells.length; j++) {
+                    const cell = document.createElement(i === 0 ? 'th' : 'td');
+                    cell.textContent = cells[j];
+                    row.appendChild(cell);
+                }
+
+                table.appendChild(row);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching CSV data:', error);
+        });
+</script>
+    
 
 </html>
