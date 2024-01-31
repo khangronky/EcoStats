@@ -10,8 +10,8 @@ public class AvgTemp implements Handler{
     public void handle(Context context) throws Exception {
         if (context.method().equals("GET")) context.render("public/html/AvgTemp.html");   
         if (context.method().equals("POST")) {
-            //String input = "1920,1940,1960,0,0,20,Countries,,,Ascending";
-            String input = context.body();
+            String input = "1920,1940,1960,0,0,20,Countries,,,Ascending";
+            //String input = context.body();
             String[] inputs = input.split(",", -1);
             int[] startingyears = new int[5];
             for (int i = 0; i < 5; i++) {
@@ -396,7 +396,7 @@ public class AvgTemp implements Handler{
 
             if (startingyears[0] == 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period == 0 && viewby.equals("Cities") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
-                query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID ORDER BY CountryName;";
+                query = "SELECT DISTINCT CountryName FROM Country JOIN City ON Country.CountryID = City.CountryID;";
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);
@@ -614,7 +614,7 @@ public class AvgTemp implements Handler{
 
             if (startingyears[0] == 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
             period == 0 && viewby.equals("States") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
-                query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID ORDER BY CountryName;";
+                query = "SELECT DISTINCT CountryName FROM Country JOIN State ON Country.CountryID = State.CountryID;";
                 System.out.println(query);
                 output = AppCSV.getCSV(database, query);
                 context.result(output);

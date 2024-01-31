@@ -27,8 +27,8 @@
         </nav>
     </div>
 
-    <div id="content">
-        <div class="container mx-auto pt-20 p-6 bg-white shadow-lg rounded-md">
+    <div id="content" class="pt-24">
+        <div class="container mx-auto p-6 bg-white shadow-lg rounded-md">
             <div class="flex justify-between items-center mb-6">
                 <button onclick="window.location.href='Data.html';"
                     class="back-to-data-btn text-gray-800 font-semibold py-2 px-4 rounded inline-flex items-center">
@@ -38,18 +38,14 @@
                     </svg>
                     <span>Back to Data Page</span>
                 </button>
-
+                <h2 class="text-3xl font-bold text-gray-900 mx-auto">Average temperature</h2>
                 <button onclick="window.location.href='Similarity.html';"
                     class="text-white bg-teal-500 hover:bg-teal-600 font-medium py-2 px-4 rounded">
                     Change to: Similarity in temperature and population
                 </button>
             </div>
-
-            <div class="text-center my-6">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Average temperature</h2>
-                <p class="text-center text-gray-600">Calculate the average temperature and population over a time
-                    period from starting years</p>
-            </div>
+            <p class="text-center text-gray-600 mb-4">Calculate the average temperature and population over a time
+                period from starting years</p>
 
             <div class="availability-data mb-6">
                 <h3 class="text-lg font-semibold text-gray-900">Availability of data:</h3>
@@ -87,15 +83,17 @@
                         </div>
                     </div>
 
-                    <div id="additional-filters-countries">
+                    <div id="additional-filters">
                         <div class="mb-4">
-                            <label for="country-sort-category" class="block text-gray-700 text-sm mb-2">Sort
-                                category</label>
-                            <select id="country-sort-category" name="country-sort-category"
+                            <label for="sort-category" class="block text-gray-700 text-sm mb-2">Sort category</label>
+                            <select id="sort-category" name="sort-category"
                                 class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                                 <option>Country name</option>
+                                <option>Year 1</option>
+                                <option>Year 2</option>
                             </select>
                         </div>
+
                         <div class="mb-4">
                             <label for="country-sort-order" class="block text-gray-700 text-sm mb-2">Sort order</label>
                             <select id="country-sort-order" name="country-sort-order"
@@ -152,6 +150,8 @@
                                 <select id="state-sort-category" name="state-sort-category"
                                     class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                                     <option>State name</option>
+                                    <option>Year 1</option>
+                                    <option>Year 2</option>
                                 </select>
                             </div>
 
@@ -167,28 +167,43 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="flex justify-center mt-6">
+                    <button id="apply-filters" type="button"
+                        class="bg-gray-600 text-white px-12 py-3 rounded-lg font-bold text-lg leading-tight transition-colors duration-300 hover:bg-gray-900 focus:outline-none focus:ring focus:border-blue-300">Apply
+                    </button>
+                </div>
             </div>
-            <div class="flex justify-center mt-6">
-                <button id="apply-filters" type="button"
-                    class="bg-gray-600 text-white px-12 py-3 rounded-lg font-bold text-lg leading-tight transition-colors duration-300 hover:bg-gray-900 focus:outline-none focus:ring focus:border-blue-300">Apply
-                </button>
+        </div>
+
+        <div class="footer bg-gray-800 text-white text-center p-4 w-full">
+            <div class="footer-content">
+                <a href="Mission.html" class="footer-link">About</a>
+                <a href="Data.html" class="footer-link">Data</a>
+                <a href="FAQ.html" class="footer-link">FAQ</a>
+            </div>
+            <div class="copyright mt-4">
+                © 2024 EcoStats. All rights reserved.
             </div>
         </div>
-    </div>
-    <div class="footer bg-gray-800 text-white text-center p-4 w-full">
-        <div class="footer-content">
-            <a href="Mission.html" class="footer-link">About</a>
-            <a href="Data.html" class="footer-link">Data</a>
-            <a href="FAQ.html" class="footer-link">FAQ</a>
-        </div>
-        <div class="copyright mt-4">
-            © 2024 EcoStats. All rights reserved.
-        </div>
-    </div>
-    <div class="copyright mt-4">
-        © 2024 EcoStats. All rights reserved.
-    </div>
-    </div>
+
+<!-- Results Section -->
+<section id="results-section">
+    <h2>Results</h2>
+    <table id="results-table">
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <!-- Add more column headers based on the API response -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here by JavaScript -->
+        </tbody>
+    </table>
+</section>
+
 </body>
 
 </html>
