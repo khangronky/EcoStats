@@ -53,7 +53,7 @@ public class Change implements Handler {
             if (startingyear != 0 && endingyear != 0 && viewby.equals("Countries") && countryname.equals("") && !sortcategory.equals("") && !sortorder.equals("")) {
                 if (sortcategory.equals("Country name")) sortcategory = "CountryName";
                 if (sortcategory.equals("Temperature")) sortcategory = "ROUND(100.0 * (t3.AvgTemp - t2.AvgTemp) / ABS(t2.AvgTemp), 3)";
-                if (sortcategory.equals("Population")) sortcategory = "ROUND(100.0 * (t3.Population - t2.Population) / ABS(t2.Population), 3)";
+                if (sortcategory.equals("Population")) sortcategory = "ROUND(100.0 * (t5.Population - t4.Population) / ABS(t4.Population), 3)";
                 if (sortorder.equals("Ascending")) sortorder = "ASC";
                 if (sortorder.equals("Descending")) sortorder = "DESC";
                 query = String.format("""
