@@ -32,8 +32,5 @@ public class App {
 
         app.get(Similarity.URL, new Similarity());
         app.post(Similarity.URL, new Similarity());
-
-        app.get(Test.URL, new Test());
-        app.post(Test.URL, new Test());
     } 
 }

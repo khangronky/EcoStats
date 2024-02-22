@@ -32,7 +32,7 @@ function updateFilters() {
         additionalFiltersCountries.style.display = "flex";
         var countryNameElement = document.getElementById("country-name");
         input = startingYear + ", " + endingYear + ", " + viewByValue + ", " + countryName + ", " + cityName + ", " + stateName + ", " + simCategory + ", " + numResults;
-        fetch("http://localhost:7001/html/Similarity.html", {
+        fetch("../html/Similarity.html", {
             method: "POST",
             body: input
         })
@@ -57,7 +57,7 @@ function updateFilters() {
         additionalFiltersCities.style.display = "flex";
         var countryNameElement = document.getElementById("country-name-cities")
         input = startingYear + ", " + endingYear + ", " + viewByValue + ", " + countryName + ", " + cityName + ", " + stateName + ", " + simCategory + ", " + numResults;
-        fetch("http://localhost:7001/html/Similarity.html", {
+        fetch("../html/Similarity.html", {
             method: "POST",
             body: input
         })
@@ -82,7 +82,7 @@ function updateFilters() {
             countryName = countryNameElement.value;
             var cityNameElement = document.getElementById("city-name");
             input = startingYear + ", " + endingYear + ", " + viewByValue + ", " + countryName + ", " + cityName + ", " + stateName + ", " + simCategory + ", " + numResults;
-            fetch("http://localhost:7001/html/Similarity.html", {
+            fetch("../html/Similarity.html", {
                 method: "POST",
                 body: input
             })
@@ -108,7 +108,7 @@ function updateFilters() {
         additionalFiltersStates.style.display = "flex";
         var countryNameElement = document.getElementById("country-name-states")
         input = startingYear + ", " + endingYear + ", " + viewByValue + ", " + countryName + ", " + cityName + ", " + stateName + ", " + simCategory + ", " + numResults;
-        fetch("http://localhost:7001/html/Similarity.html", {
+        fetch("../html/Similarity.html", {
             method: "POST",
             body: input
         })
@@ -133,7 +133,7 @@ function updateFilters() {
             countryName = countryNameElement.value;
             var stateNameElement = document.getElementById("state-name");
             input = startingYear + ", " + endingYear + ", " + viewByValue + ", " + countryName + ", " + cityName + ", " + stateName + ", " + simCategory + ", " + numResults;
-            fetch("http://localhost:7001/html/Similarity.html", {
+            fetch("../html/Similarity.html", {
                 method: "POST",
                 body: input
             })
@@ -292,7 +292,7 @@ function applyFilters() {
     numResults = document.getElementById("number-results").value;
 
     input = startingYear + ", " + endingYear + ", " + viewByValue + ", " + countryName + ", " + cityName + ", " + stateName + ", " + simCategory + ", " + numResults;
-    fetch("http://localhost:7001/html/Similarity.html", {
+    fetch("../html/Similarity.html", {
         method: "POST",
         body: input
     })

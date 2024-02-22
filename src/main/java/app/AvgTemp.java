@@ -27,7 +27,7 @@ public class AvgTemp implements Handler{
             String output = "";
 
             if (startingyears[0] != 0 && startingyears[1] == 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("World") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)'
                 FROM (SELECT CASE WHEN COUNT(AvgTemp) = %d + 1 THEN ROUND(AVG(AvgTemp), 3) ELSE NULL END c1,
@@ -44,7 +44,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] == 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("World") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)',
                 c3 'Average temperature (%d-%d)', c4 'Land-Ocean average temperature (%d-%d)'
@@ -69,7 +69,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] == 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("World") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)',
                 c3 'Average temperature (%d-%d)', c4 'Land-Ocean average temperature (%d-%d)',
@@ -102,7 +102,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] == 0 &&
-            period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("World") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)',
                 c3 'Average temperature (%d-%d)', c4 'Land-Ocean average temperature (%d-%d)',
@@ -143,7 +143,7 @@ public class AvgTemp implements Handler{
             }
 
             if (startingyears[0] != 0 && startingyears[1] != 0 && startingyears[2] != 0 && startingyears[3] != 0 && startingyears[4] != 0 &&
-            period != 0 && viewby.equals("World") && !countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
+            period != 0 && viewby.equals("World") && countryname.equals("") && sortcategory.equals("") && sortorder.equals("")) {
                 query = String.format("""
                 SELECT c1 'Average temperature (%d-%d)', c2 'Land-Ocean average temperature (%d-%d)',
                 c3 'Average temperature (%d-%d)', c4 'Land-Ocean average temperature (%d-%d)',

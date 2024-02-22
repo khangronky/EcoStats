@@ -36,7 +36,7 @@ function updateFilters() {
         var countryNameElement = document.getElementById("country-name-cities");
         input = startingYears[0] + ", " + startingYears[1] + ", " + startingYears[2] + ", " + startingYears[3] + ", " + startingYears[4] + ", " +
             period + ", " + viewByValue + ", " + countryName + ", " + sortCategory + ", " + sortOrder;
-        fetch("http://localhost:7001/html/AvgTemp.html", {
+        fetch("../html/AvgTemp.html", {
             method: "POST",
             body: input
         })
@@ -62,7 +62,7 @@ function updateFilters() {
         var countryNameElement = document.getElementById("country-name-states");
         input = startingYears[0] + ", " + startingYears[1] + ", " + startingYears[2] + ", " + startingYears[3] + ", " + startingYears[4] + ", " +
             period + ", " + viewByValue + ", " + countryName + ", " + sortCategory + ", " + sortOrder;
-        fetch("http://localhost:7001/html/AvgTemp.html", {
+        fetch("../html/AvgTemp.html", {
             method: "POST",
             body: input
         })
@@ -239,7 +239,8 @@ function applyFilters() {
 
     input = startingYearsInput[0] + ", " + startingYearsInput[1] + ", " + startingYearsInput[2] + ", " + startingYearsInput[3] + ", " + startingYearsInput[4] + ", " +
         period + ", " + viewByValue + ", " + countryName + ", " + sortCategory + ", " + sortOrder;
-    fetch("http://localhost:7001/html/AvgTemp.html", {
+    console.log(input);
+    fetch("../html/AvgTemp.html", {
         method: "POST",
         body: input
     })

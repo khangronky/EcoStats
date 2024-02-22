@@ -33,7 +33,7 @@ function updateFilters() {
         additionalFilterCities.style.display = "block";
         var countryNameElement = document.getElementById("country-name-cities");
         input = startingYear + ", " + endingYear + ", " + viewByValue + ", " + countryName + ", " + sortCategory + ", " + sortOrder;
-        fetch("http://localhost:7001/html/Change.html", {
+        fetch("../html/Change.html", {
             method: "POST",
             body: input
         })
@@ -57,7 +57,7 @@ function updateFilters() {
         additionalFilterStates.style.display = "block";
         var countryNameElement = document.getElementById("country-name-states");
         input = startingYear + ", " + endingYear + ", " + viewByValue + ", " + countryName + ", " + sortCategory + ", " + sortOrder;
-        fetch("http://localhost:7001/html/Change.html", {
+        fetch("../html/Change.html", {
             method: "POST",
             body: input
         })
@@ -167,7 +167,7 @@ function applyFilters() {
     var sortCategory = "";
     var sortOrder = "";
     var input = "";
-
+    
     startingYear = document.getElementById("starting-year").value;
     endingYear = document.getElementById("ending-year").value;
     viewByValue = document.getElementById("view-by").value;
@@ -179,7 +179,7 @@ function applyFilters() {
     if (viewByValue === "States") countryName = document.getElementById("country-name-states").value;
 
     input = startingYear + ", " + endingYear + ", " + viewByValue + ", " + countryName + ", " + sortCategory + ", " + sortOrder;
-    fetch("http://localhost:7001/html/Change.html", {
+    fetch("../html/Change.html", {
         method: "POST",
         body: input
     })
